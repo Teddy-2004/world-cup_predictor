@@ -1,0 +1,15 @@
+{
+  "log_loss": 0.9458137006357312,
+  "accuracy": 0.5001435406698564,
+  "brier_home": 0.21336360793664647,
+  "brier_draw": 0.1807218890888619,
+  "brier_away": 0.16815646047260158,
+  "n_matches": 20900,
+  "trained_at": "2026-05-23T07:25:13.033561",
+  "holdout_log_loss": 0.996902400828187,
+  "holdout_accuracy": 0.53125,
+  "baseline_log_loss": 1.0731435940240885,
+  "baseline_accuracy": 0.4375,
+  "improvement_log_loss": 0.0762411931959015,
+  "n_holdout_matches": 64
+}

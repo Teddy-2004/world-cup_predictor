@@ -1,0 +1,1700 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    
+<script type="text/javascript" data-description="sourcepoint stub code">
+    !function () { var e = function () { var e, t = "__tcfapiLocator", a = [], n = window; for (; n;) { try { if (n.frames[t]) { e = n; break } } catch (e) { } if (n === window.top) break; n = n.parent } e || (!function e() { var a = n.document, r = !!n.frames[t]; if (!r) if (a.body) { var i = a.createElement("iframe"); i.style.cssText = "display:none", i.name = t, a.body.appendChild(i) } else setTimeout(e, 5); return !r }(), n.__tcfapi = function () { for (var e, t = arguments.length, n = new Array(t), r = 0; r < t; r++)n[r] = arguments[r]; if (!n.length) return a; if ("setGdprApplies" === n[0]) n.length > 3 && 2 === parseInt(n[1], 10) && "boolean" == typeof n[3] && (e = n[3], "function" == typeof n[2] && n[2]("set", !0)); else if ("ping" === n[0]) { var i = { gdprApplies: e, cmpLoaded: !1, cmpStatus: "stub" }; "function" == typeof n[2] && n[2](i) } else a.push(n) }, n.addEventListener("message", (function (e) { var t = "string" == typeof e.data, a = {}; try { a = t ? JSON.parse(e.data) : e.data } catch (e) { } var n = a.__tcfapiCall; n && window.__tcfapi(n.command, n.version, (function (a, r) { var i = { __tcfapiReturn: { returnValue: a, success: r, callId: n.callId } }; t && (i = JSON.stringify(i)), e.source.postMessage(i, "*") }), n.parameter) }), !1)) }; "undefined" != typeof module ? module.exports = e : e() }();
+</script>
+<script data-description="sourcepoint configuration">
+window._sp_ = {
+    config: {"accountId":1254,"propertyId":7324,"gdpr":{"consentLanguage":"de","targetingParams":{"acps":"false"}},"baseEndpoint":"https://cdn.privacy-mgmt.com","isSPA":true,"cpPropertyId":"003ad223"}}
+</script>
+<script src="https://cdn.privacy-mgmt.com/wrapperMessagingWithoutDetection.js" async></script>
+<script type="text/javascript" data-description="contentpass integration">
+    (function() {
+        var cpBaseUrl = 'https://cp.transfermarkt.de';
+        var cpController = cpBaseUrl + '/now.js';
+        var cpPropertyId = '003ad223';
+
+        !function(C,o,n,t,P,a,s){C['CPObject']=n;C[n]||(C[n]=function(){
+        (C[n].q=C[n].q||[]).push(arguments)});C[n].l=+new Date;a=o.createElement(t);
+        s=o.getElementsByTagName(t)[0];a.src=P;s.parentNode.insertBefore(a,s)}
+        (window,document,'cp','script',cpController);
+
+        !function(C,o,n,t,P){if(!C[n].patched){cp('extension','authenticate');P=C[n].q.push;
+        C[n].q.push=function(a){if(a[0]==='authenticate'){if((o['cookie']||'').indexOf('_cpauthhint=')===-1&&
+        !(C['localStorage']||{})['_cpuser']&&C.location.href.toLowerCase().indexOf('cpauthenticated')===-1){
+        t={isLoggedIn:function(){return false;},hasValidSubscription:function(){return false;}};
+        (typeof a[1]==='function'&&a[1](null,t));C[n].afp=true;P.apply(C[n].q,[['authenticate',null]]);
+        return t;}}P.apply(C[n].q,[a]);}}}
+        (window,document,'cp',false);
+
+        cp('create', cpPropertyId, {
+        baseUrl: cpBaseUrl
+        });
+
+        cp('render', {
+        onFullConsent: function() {
+            console.log('[DEMO] onFullConsent');
+        }
+        })
+    })()
+</script>
+
+<script type="text/javascript" data-description="contentpass sourcepoint fast path">
+(function () {
+    cp('authenticate', function(err, user) {
+        if (err || (!user.isLoggedIn() && !user.hasValidSubscription())) {
+        // console.log('[SPCP] Taking fast path');
+        (function spExecMsg() {
+            if (window._sp_ && window._sp_.executeMessaging) {
+            if (!window._sp_.config.isSPA) {
+                // console.warn('[SPCP] Sourcepoint not in SPA mode!');
+            } else if (window._sp_.version) {
+                // console.log('[SPCP] Sourcepoint already running');
+            } else {
+                // console.log('[SPCP] Starting Sourcepoint');
+                window._sp_.executeMessaging();
+            }
+            } else {
+            // console.log('[SPCP] Sourcepoint not loaded yet. Retrying.');
+            setTimeout(spExecMsg, 10);
+            }
+        })();
+        }
+    });
+    })();
+</script>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="shortcut icon" sizes="192x192" href="/android-chrome-192x192.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=no" />
+<meta name="keywords" content="Weltmeisterschaft" />
+<meta name="description" content="In dieser Übersicht werden Teilnehmer der Weltmeisterschaft gelistet. Es wird unter anderem der Gesamtmarktwert der Mannschaften." />
+<meta property="og:type" content="article" />
+<meta property="og:image" content="https://tmssl.akamaized.net/images/tm_logo.png" />
+<meta property="og:description" content="" />
+<meta property="og:title" content="Weltmeisterschaft 2022 - Teilnehmende Teams" />
+<meta property="twitter:title" content="Weltmeisterschaft 2022 - Teilnehmende Teams" />
+<meta property="og:url" content="https://www.transfermarkt.de/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021" />
+<link hreflang="de" rel="alternate" href="https://www.transfermarkt.de/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021" />
+<link hreflang="de-LU" rel="alternate" href="https://www.transfermarkt.de/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021" />
+<link hreflang="de-AT" rel="alternate" href="https://www.transfermarkt.at/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021" />
+<link hreflang="de-CH" rel="alternate" href="https://www.transfermarkt.ch/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021" />
+<link hreflang="tr" rel="alternate" href="https://www.transfermarkt.com.tr/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021" />
+<link hreflang="it-CH" rel="alternate" href="https://www.transfermarkt.it/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021" />
+<link hreflang="it" rel="alternate" href="https://www.transfermarkt.it/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021" />
+<link hreflang="pl" rel="alternate" href="https://www.transfermarkt.pl/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021" />
+<link hreflang="en-GB" rel="alternate" href="https://www.transfermarkt.co.uk/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021" />
+<link hreflang="en-IE" rel="alternate" href="https://www.transfermarkt.co.uk/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021" />
+<link hreflang="es" rel="alternate" href="https://www.transfermarkt.es/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021" />
+<link hreflang="es-ES" rel="alternate" href="https://www.transfermarkt.es/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021" />
+<link hreflang="es-CL" rel="alternate" href="https://www.transfermarkt.es/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021" />
+<link hreflang="es-VE" rel="alternate" href="https://www.transfermarkt.es/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021" />
+<link hreflang="es-EC" rel="alternate" href="https://www.transfermarkt.es/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021" />
+<link hreflang="es-CU" rel="alternate" href="https://www.transfermarkt.es/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021" />
+<link hreflang="nl" rel="alternate" href="https://www.transfermarkt.nl/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021" />
+<link hreflang="pt" rel="alternate" href="https://www.transfermarkt.pt/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021" />
+<link hreflang="ru" rel="alternate" href="https://www.transfermarkt.world/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021" />
+<link hreflang="fr-CH" rel="alternate" href="https://www.transfermarkt.fr/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021" />
+<link hreflang="fr" rel="alternate" href="https://www.transfermarkt.fr/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021" />
+<link hreflang="fr-CA" rel="alternate" href="https://www.transfermarkt.fr/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021" />
+<link hreflang="fr-CI" rel="alternate" href="https://www.transfermarkt.fr/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021" />
+<link hreflang="fr-LU" rel="alternate" href="https://www.transfermarkt.fr/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021" />
+<link hreflang="fr-BE" rel="alternate" href="https://www.transfermarkt.fr/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021" />
+<link hreflang="pt-BR" rel="alternate" href="https://www.transfermarkt.com.br/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021" />
+<link hreflang="en-US" rel="alternate" href="https://www.transfermarkt.us/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021" />
+<link hreflang="en-CA" rel="alternate" href="https://www.transfermarkt.us/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021" />
+<link hreflang="en-IN" rel="alternate" href="https://www.transfermarkt.co.in/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021" />
+<link hreflang="en-ZA" rel="alternate" href="https://www.transfermarkt.co.za/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021" />
+<link hreflang="x-default" rel="alternate" href="https://www.transfermarkt.com/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021" />
+<link hreflang="en" rel="alternate" href="https://www.transfermarkt.com/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021" />
+<link hreflang="nl-BE" rel="alternate" href="https://www.transfermarkt.be/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021" />
+<link hreflang="ro" rel="alternate" href="https://www.transfermarkt.ro/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021" />
+<link hreflang="el-GR" rel="alternate" href="https://www.transfermarkt.gr/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021" />
+<link hreflang="ko-KR" rel="alternate" href="https://www.transfermarkt.co.kr/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021" />
+<link hreflang="es-AR" rel="alternate" href="https://www.transfermarkt.com.ar/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021" />
+<link hreflang="es-MX" rel="alternate" href="https://www.transfermarkt.mx/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021" />
+<link hreflang="es-CO" rel="alternate" href="https://www.transfermarkt.co/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021" />
+<link hreflang="es-PE" rel="alternate" href="https://www.transfermarkt.pe/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021" />
+<link hreflang="ms" rel="alternate" href="https://www.transfermarkt.my/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021" />
+<link hreflang="ja" rel="alternate" href="https://www.transfermarkt.jp/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021" />
+<link hreflang="id" rel="alternate" href="https://www.transfermarkt.co.id/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021" />
+<link rel="next" href="https://www.transfermarkt.de/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021/page/2" />
+<link rel="stylesheet" type="text/css" href="https://tmssl.akamaized.net/styles/tm-main.min.css?lm=1779364634" />
+<link rel="stylesheet" type="text/css" href="https://tmssl.akamaized.net/css/stylesheets/main_desktop.css?lm=1779364067" />
+<link rel="stylesheet" type="text/css" href="https://tmssl.akamaized.net/styles/tm-discover.min.css?lm=1779364634" />
+<link rel="stylesheet" type="text/css" href="https://tmssl.akamaized.net/styles/tm-button-list.min.css?lm=1779364634" />
+<link rel="stylesheet" type="text/css" href="https://tmssl.akamaized.net/styles/tm-link-list.min.css?lm=1779364634" />
+<link rel="stylesheet" type="text/css" href="https://tmssl.akamaized.net/styles/tm-print.min.css?lm=1779364634" />
+<link rel="stylesheet" type="text/css" href="https://tmssl.akamaized.net/styles/tm-competition.min.css?lm=1779364634" />
+<link rel="stylesheet" type="text/css" href="https://tmssl.akamaized.net/styles/tm-chosen.min.css?lm=1779364634" />
+<link rel="stylesheet" type="text/css" href="https://tmssl.akamaized.net/css/stylesheets/main.css?lm=1779364067" />
+<link rel="stylesheet" type="text/css" href="https://tmssl.akamaized.net/styles/tm-user-profile.min.css?lm=1779364634" />
+<link rel="stylesheet" type="text/css" href="https://tmssl.akamaized.net/styles/tm-club-profile.min.css?lm=1779364634" />
+<link rel="stylesheet" type="text/css" href="https://tmssl.akamaized.net/css/stylesheets/paginator.css?lm=1779364067" />
+<script type="text/javascript" src="https://tmssl.akamaized.net/js/vendor/jquery.min.js?lm=1779364067"></script>
+<script type="text/javascript" src="https://tmssl.akamaized.net/assets/b7c5571cf8957553f95f6d9069eaed67/jquery.ba-bbq.min.js?lm=1779364067"></script>
+<script type="text/javascript" src="https://tmssl.akamaized.net/ads/tisoomi.de.min.js?lm=1779364501"></script>
+<script type="text/javascript" src="https://tmssl.akamaized.net/assets/b344ec51bd68be8ed48379c9e69eb01d/js/jquery.scrollTo.min.js?lm=1779364067"></script>
+<script type="text/javascript" src="https://tmssl.akamaized.net/assets/b344ec51bd68be8ed48379c9e69eb01d/js/elinkpagermobile.js?lm=1779364067"></script>
+<script type="text/javascript" src="https://tmssl.akamaized.net/js/main.js?lm=1779364067"></script>
+<script type="text/javascript" src="https://tmssl.akamaized.net/js/chosen.ajaxaddition.jquery.js?lm=1779364067"></script>
+<script type="text/javascript" src="https://tmssl.akamaized.net/js/functions.js?lm=1779364067"></script>
+<script type="text/javascript" src="https://tmssl.akamaized.net/js/main_desktop.js?lm=1779364067"></script>
+<script type="text/javascript" src="https://tmssl.akamaized.net/js/chosen.jquery.js?lm=1779364067"></script>
+<script type="text/javascript" src="https://tmsi.akamaized.net/js/svelte-components/consent/bundle.js"></script>
+<script type="text/javascript">
+/*<![CDATA[*/
+console.info("%c [TM-ADs] Initialize Ads on domain .de (pokalwettbewerb/teilnehmer)", "background: #282828; color: #bada55")
+console.info("%c [TM-ADs] Tisoomi is active -> add Tisoomi script", "background: #282828; color: #bada55")
+console.info("%c [TM-ADs] Set zone to profile for stroeer", "background: #282828; color: #bada55")
+console.info("%c [TM-ADs] Render slot skyscraper-left-bound (sky2/skyscraper2) for stroeer", "background: #282828; color: #bada55")
+console.info("%c [TM-ADs] Wrap ad container with Tisoomi for format skyscraper-left-bound", "background: #282828; color: #bada55")
+console.info("%c [TM-ADs] Render slot skyscraper (sky/skyscraper) for stroeer", "background: #282828; color: #bada55")
+console.info("%c [TM-ADs] Wrap ad container with Tisoomi for format skyscraper", "background: #282828; color: #bada55")
+console.info("%c [TM-ADs] Render slot billboard (banner/superbanner) for stroeer", "background: #282828; color: #bada55")
+console.info("%c [TM-ADs] Wrap ad container with Tisoomi for format billboard", "background: #282828; color: #bada55")
+console.info("%c [TM-ADs] Render slot fullsize_contentad (pubperform/fullsize_contentad) for stroeer", "background: #282828; color: #bada55")
+console.info("%c [TM-ADs] Wrap ad container with Tisoomi for format fullsize_contentad", "background: #282828; color: #bada55")
+    var oddsServe = function(placement,competition,match,node) {
+        if (!node){
+            var s=document.readyState==='loading'?document.getElementsByTagName('script'):[];
+            node=s.length?s[s.length-1].parentNode:null;
+        }
+        oddsServe.queue.push({contentUnitId:placement,competition:competition,match:match,node:node});
+    }
+    
+    oddsServe.onInit=function(callbacks){
+        if (typeof window.__tcfapi === 'function') {
+            __tcfapi('addEventListener', 2, function(tcdata, success) {
+                let tcf20compatibleString;
+                if(success) {
+                    if (tcdata.eventStatus === 'useractioncomplete') {
+                        tcf20compatibleString = tcdata.tcString;
+                    } else if (tcdata.eventStatus === 'tcloaded') {
+                        tcf20compatibleString = tcdata.tcString;
+                    }
+                    callbacks.setGdprOptions({
+                        gdpr:1,
+                        gdpr_pd:1,
+                        gdpr_consent:tcf20compatibleString,
+                    });
+                }
+            });
+        } else {
+            console.warn('E2: __tcfapi not found');
+        }
+    };
+    oddsServe.options={gdpr_wait:true};
+    oddsServe.queue=[];
+console.info("%c [TM-ADs] Add adslot configuration for 4 ad slots skyscraper-left-bound | skyscraper | billboard | fullsize_contentad", "background: #282828; color: #bada55")
+console.info("%c [TM-ADs] Adslots without configuration: fireplace | superbanner | skyscraperbtf | richmedia | 1by1px", "background: #282828; color: #bada55")
+console.info("%c [TM-ADs] Register slots with JS vendor lib", "background: #282828; color: #bada55")
+console.info("%c [TM-ADs] Add contentGroup1 with value statistik", "background: #282828; color: #bada55")
+console.info("%c [TM-ADs] Add contentGroup2 with value pokalwettbewerb", "background: #282828; color: #bada55")
+console.info("%c [TM-ADs] Add contentGroup3 with value teilnehmer", "background: #282828; color: #bada55")
+console.info("%c [TM-ADs] Add contentGroup4 with value FIWC", "background: #282828; color: #bada55")
+window.addEventListener('load', () => {
+  const offset = window.matchMedia('(max-width: 768px)').matches ? 80 : 120;
+  document.querySelectorAll('[data-sticky]').forEach(node => {
+    const parent = node.parentElement;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) {
+        parent.style.position = 'sticky';
+        parent.style.top = `${offset}px`;
+        parent.style.zIndex = 12000000;
+        setTimeout(() => {
+          parent.style.removeProperty('position');
+          parent.style.removeProperty('top');
+          parent.style.removeProperty('z-index');
+        }, parseInt(node.dataset?.sticky) || 3000);
+        observer.unobserve(parent);
+      }
+    }, { rootMargin: `-${offset}px 0px 0px 0px`, threshold: 1 });
+    observer.observe(parent);
+  });
+});
+window.SDG = window.SDG || {};
+window.SDG.cmd = window.SDG.cmd || [];
+window.SDG.cmd.push(() => {
+  SDG.Publisher.setZone("profile");
+  SDG.Publisher.addKeyValue("contentGroup1", "statistik");
+  SDG.Publisher.addKeyValue("contentGroup2", "pokalwettbewerb");
+  SDG.Publisher.addKeyValue("contentGroup3", "teilnehmer");
+  SDG.Publisher.addKeyValue("contentGroup4", "FIWC");
+  SDG.Publisher.addKeyValue("wettbewerb_id", "FIWC");
+  SDG.Publisher.registerSlot("banner", "superbanner")
+    .configure({
+      reserveSpace: true,
+      showLoadingAnimation: true,
+      fixedHeight: 250,
+      showAdvertLabel: false,
+      centerAds: true,
+    })
+    .load();
+  SDG.Publisher.registerSlot("sky2", "skyscraper2")
+    .configure({
+      showAdvertLabel: false,
+      centerAds: true,
+    })
+    .load();
+  SDG.Publisher.registerSlot("sky", "skyscraper")
+    .configure({
+      showAdvertLabel: false,
+      centerAds: true,
+    })
+    .load();
+  SDG.Publisher.registerSlot("pubperform", "fullsize_contentad")
+    .configure({
+      reserveSpace: true,
+      fixedHeight: 250,
+      lazyLoad: true,
+      showAdvertLabel: false,
+      centerAds: true,
+    })
+    .load();
+ SDG.Publisher.finalizeSlots();
+});
+
+console.info("%c [TM-ADs] Render ad slots js for stroeer", "background: #282828; color: #bada55")
+console.info("%c [TM-ADs] Added external ad script https://cdn.stroeerdigitalgroup.de/metatag/live/transfermarkt.de/metaTag.min.js for stroeer on wettbewerbe_wm", "background: #282828; color: #bada55")
+console.info("%c [TM-ADs] Skipped external script https://imagesrv.adition.com/js/srp.js for adition on wettbewerbe_wm", "background: #282828; color: #bada55")
+/*]]>*/
+</script>
+<title>Weltmeisterschaft 2022 - Teilnehmende Teams | Transfermarkt</title>
+    <link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-152x152.png">
+    
+<script type="text/javascript">
+   tmData = {
+       loggedIn : "0",
+       tmTraffic: "0",
+   };
+</script>
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    let utmVars = {
+        eVar1: urlParams.get('utm_campaign'),
+        eVar6: urlParams.get('utm_source'),
+        eVar24: urlParams.get('utm_medium')
+    };
+    Object.keys(utmVars).forEach((k) => utmVars[k] == null && delete utmVars[k]);
+
+    window.tmAnalyticsDataLayer = window.tmAnalyticsDataLayer || [];
+    window.tmAnalytics = {
+        dimensions: {
+            eVar11: 'World Cup (FIWC)',
+			eVar12: '',
+			eVar10: '',
+			...utmVars,
+            evar19: window.location.href,
+            eVar35 : '',
+			eVar37 : '',
+    },
+    properties: {
+        prop2: 'statistik',
+		prop3: 'pokalwettbewerb',
+		prop4: 'teilnehmer',
+		prop5: 'FIWC',
+		prop14: 'statistik_pokalwettbewerb_teilnehmer_FIWC',
+		prop9: window.location.hostname,
+        prop10: window.location.href,
+        prop1 : 'false',
+    },
+    pageDetails: {
+        pageViews: {
+            value: 1
+        },
+        isErrorPage: 'false',
+            isHomepage: 'false',
+            name: 'Weltmeisterschaft 2022 - Teilnehmende Teams | Transfermarkt',
+            URL: window.location.href,
+            server: 'prod-tm-web-server-12251'
+    },
+    };
+
+function tmEventForLink(category, aTag, label) {
+    const url = new URL(aTag.href);
+    const link = url.pathname + url.search;
+    tmEvent(category, link, label);
+}
+
+function tmEvent(category, action, label, detail = '') {
+    if (typeof gtag === 'function') {
+        gtag('event',
+            action,
+            {
+                'event_category': category,
+                'event_label': label
+            }
+        );
+    }
+
+    const ev = {
+        event: 'tmEvent',
+        tmEvent: {
+            customDimensions: {
+                eVars: {
+                    ...tmAnalytics.dimensions
+                },
+                props: {
+                    prop6: category,
+                    prop7: action,
+                    prop8: label,
+                    prop17: detail,
+                    ...tmAnalytics.properties
+                }
+            },
+            event1to100: {
+                event7: {
+                    value: 1
+                },
+                event8: null,
+            },
+            session: {
+                web: {
+                    webInteraction: {
+                        linkClicks: {
+                            value: 1
+                        }
+                    },
+                    webPageDetails: {
+                        ...tmAnalytics.pageDetails,
+                        ...{
+                            pageViews: {
+                                value: null
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    };
+
+     if (!window._satellite) {
+        once = false;
+        window._satellite = { _monitors: [{
+            ruleTriggered: (e) => {
+                if (once) {
+                    return;
+                }
+                once = true;
+                setTimeout(() => {
+                    tmAnalyticsDataLayer.push(ev);
+                    tmAnalyticsDataLayer.push(function (dl) {
+                        const state = dl.getState();
+                    });
+                }, 1);
+            }
+        }] };
+    } else {
+        tmAnalyticsDataLayer.push(ev);
+        tmAnalyticsDataLayer.push(function (dl) {
+            const state = dl.getState();
+        });
+    }
+}
+function tmTrackingAndAds() {
+    if (typeof gtag === 'function') {
+        gtag("event", "page_view", {
+            page_path: "/jsContent" + window.location.pathname
+        });
+    }
+
+    tmAnalyticsDataLayer.push({
+        event: 'tmTrackingAndAds',
+        tmTrackingAndAds: {
+            customDimensions: {
+                eVars: tmAnalytics.dimensions,
+                props: tmAnalytics.properties
+            },
+            event1to100: {
+                event7: null,
+                event8: {
+                    value: 1
+                }
+            },
+            session: {
+                web: {
+                    webInteraction: {
+                        linkClicks: {
+                            value: null
+                        }
+                    },
+                    webPageDetails: {
+                        ...tmAnalytics.pageDetails,
+                        ...{
+                            pageViews: {
+                                value: 1
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    });
+    tmAnalyticsDataLayer.push(function (dl) {
+        const state = dl.getState();
+    });
+}
+function tmTiming(value, name, event_category, event_label) {
+    console.log('tmTiming', value, name, event_category, event_label);
+}
+
+        !function(e,a,n,t){var i=e.head;if(i){
+            if (a) return;
+            var o=e.createElement("style");
+            o.id="alloy-prehiding",o.innerText=n,i.appendChild(o),setTimeout(function(){o.parentNode&&o.parentNode.removeChild(o)},t)}}
+        (document, document.location.href.indexOf("adobe_authoring_enabled") !== -1, ".personalization-container { opacity: 0 !important }", 3000);
+
+            !function(n,o){o.forEach(function(o){n[o]||((n.__alloyNS=n.__alloyNS||
+                []).push(o),n[o]=function(){var u=arguments;return new Promise(
+                function(i,l){n[o].q.push([i,l,u])})},n[o].q=[])})}
+            (window,["alloy"]);
+</script>
+<tm-consent
+    type="adobe"
+    no-checkbox
+    embed="PHNjcmlwdCBhc3luYyBzcmM9Imh0dHBzOi8vYXNzZXRzLmFkb2JlZHRtLmNvbS83Y2FkY2E5NWRkOWEvY2Q0YWI4ODRkMjMxL2xhdW5jaC0wMTI3MmI0MDBjNjUubWluLmpzIj48L3NjcmlwdD4=">
+</tm-consent>
+
+    <script type="text/javascript" src="https://tmssl.akamaized.net//ads/ads.js"></script>
+    <script type="text/javascript">
+        window.tmGaId = "UA-3816204-13";
+
+        function sendIvwData() {}
+    </script>
+    </head>
+
+<body class="desktop " itemscope itemtype="http://schema.org/WebPage" data-tm-tld="de" data-cmp-layer-id="1466079" data-db-name="de-der-zauberzwerg" >
+                <div id="werbung_superbanner_wrapper">
+                            </div>
+        
+                <tm-domain-note></tm-domain-note>
+        <div id="main">
+                    <button id="back-to-top" title="Nach oben">
+                <svg xmlns="http://www.w3.org/2000/svg" width="17.795" height="10.009" viewBox="0 0 17.795 10.009">
+                    <path id="angle-up" d="M20.683,17.01a1.112,1.112,0,0,1-.786-.326l-7-7-7,7a1.112,1.112,0,1,1-1.573-1.573l7.785-7.785a1.112,1.112,0,0,1,1.573,0l7.785,7.785a1.112,1.112,0,0,1-.786,1.9Z" transform="translate(-4 -7)" fill="#fff"/>
+                </svg>
+            </button>
+            <div class="werbung-skyscraper-left-bound-container">
+                
+<div class="werbung ad-placement-note werbung-skyscraper-left-bound" data-ad-placement-note="Werbung">
+  <div id="skyscraper2"></div>
+</div>
+
+
+            </div>
+            <div class="werbung-skyscraper-container">
+                <script type="text/javascript">//H3IXPRY("skyscraper")</script>
+<div class="werbung ad-placement-note werbung-skyscraper" data-ad-placement-note="Werbung">
+  <div id="skyscraper"></div>
+</div>
+
+<span class="H3IXPRY_end"></span>
+            </div>
+
+            <div class="werbung-skyscraperbtf-container">
+                            </div>
+        
+        <div id="tm-overlay"></div>
+
+                    <div class="tm-header__box">
+                <!-- logo  -->
+                <a href="/" class="tm-header__logo" onclick="tmEvent('hauptnavi', '/', 'TM-Logo');">
+                    <img src="https://tmsi.akamaized.net/head/tm_logo_rebrush.svg"
+                         height="62"
+                         width="156"
+                         title="Transfermarkt"
+                         alt="Transfermarkt"
+                    >
+                </a>
+
+                <!-- domainswitcher  -->
+                <div class="domin-swicher">
+                    <tm-domain-switcher
+                        tld="de"
+                        translations='{&quot;chooseYourDomain&quot;:&quot;W\u00e4hle deine Domain&quot;}'></tm-domain-switcher>
+                </div>
+
+                <!-- live -->
+                <tm-live-match-count
+                    class="tm-header__live"
+                    auto-request                    content='{&quot;liveMatches&quot;:&quot;Livespiele&quot;,&quot;liveMatch&quot;:&quot;Livespiel&quot;,&quot;live&quot;:&quot;Live&quot;}'></tm-live-match-count>
+
+                <!-- Search -->
+                                    <div class="tm-header__search " id="schnellsuche-platz">
+                        <form name="schnellsuche" id="schnellsuche" class="tm-header__form" action="/schnellsuche/ergebnis/schnellsuche">
+                            <input type="text" name="query" class="tm-header__input--search-field" onClick="" placeholder="Suchbegriff eingeben (Spieler, Verein,...)" autocorrect="off" spellcheck="false" value="" />
+                            <button type="submit" value="" class="tm-header__input--search-send" alt="Suchen">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18" height="18" viewBox="0 0 18 18">
+                                    <path d="M17.825,16.847 L14.28,13.303 C17.072,9.987 16.756,5.061 13.563,2.13 C10.37,-0.8 5.435,-0.695 2.37,2.37 C-0.695,5.435 -0.8,10.37 2.13,13.563 C5.061,16.756 9.987,17.072 13.303,14.28 L16.847,17.825 C17.121,18.069 17.538,18.057 17.797,17.797 C18.057,17.538 18.069,17.121 17.825,16.847 z M1.418,8.108 C1.417,4.413 4.412,1.417 8.107,1.416 C11.802,1.415 14.798,4.411 14.799,8.106 C14.799,11.801 11.804,14.797 8.108,14.797 C4.414,14.797 1.419,11.803 1.418,8.108 z" fill="#000" />
+                                </svg>
+                            </button>
+                        </form>
+                        <a href="/detailsuche/spielerdetail/suche" title="Zur Spieler-Detailsuche" id="detailsuche-head" class="tm-header__search-detail">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18" height="18" viewBox="0, 0, 18, 18">
+                                <path d="M3.138,3.558 C3.137,1.593 4.727,0 6.69,0 C8.652,-0 10.243,1.592 10.243,3.556 C10.243,5.521 8.653,7.113 6.69,7.113 C4.729,7.113 3.138,5.522 3.138,3.558 z M8.233,13.187 C8.261,11.778 8.861,10.442 9.893,9.486 C9.967,9.418 9.997,9.315 9.971,9.219 C9.946,9.119 9.863,9.044 9.76,9.03 C9.331,8.938 8.893,8.893 8.454,8.895 L4.906,8.895 C3.583,8.808 2.286,9.298 1.35,10.239 C0.414,11.179 -0.07,12.479 0.021,13.804 C-0.085,14.656 0.209,15.509 0.817,16.114 C1.425,16.72 2.279,17.009 3.13,16.897 L9.266,16.897 C9.372,16.895 9.467,16.831 9.508,16.732 C9.549,16.634 9.527,16.521 9.453,16.444 C8.665,15.544 8.232,14.387 8.236,13.191 z M17.805,17.804 C17.68,17.93 17.511,18 17.334,18 C17.158,18 16.989,17.93 16.864,17.804 L15.237,16.177 C13.686,17.242 11.58,16.949 10.378,15.501 C9.176,14.052 9.274,11.926 10.604,10.594 C11.934,9.263 14.058,9.165 15.505,10.368 C16.952,11.571 17.244,13.68 16.181,15.233 L17.805,16.866 C18.065,17.126 18.065,17.548 17.805,17.808 z M15.484,13.182 C15.484,11.911 14.455,10.881 13.186,10.881 C11.917,10.881 10.888,11.911 10.888,13.182 C10.888,14.452 11.917,15.482 13.186,15.482 C14.455,15.482 15.484,14.452 15.484,13.182 z" fill="#000" />
+                            </svg>
+                        </a>
+                    </div>
+                
+                <!-- login button -->
+                <div class="tm-header__login">
+                    <tm-userbox translations='{&quot;addFavorite&quot;:&quot;Diese Seite meinen Favoriten hinzuf\u00fcgen&quot;,&quot;adminArea&quot;:&quot;Adminbereich&quot;,&quot;adminTools&quot;:&quot;Admintools&quot;,&quot;allFavoriteLinkText&quot;:&quot;Zu meinen favorisierten Links&quot;,&quot;applyAsModOrDatascout&quot;:&quot;Bewirb dich als Moderator oder Datenpfleger&quot;,&quot;checkAllNews&quot;:&quot;Zu allen News&quot;,&quot;checkAllRumours&quot;:&quot;Zu allen Ger\u00fcchten&quot;,&quot;chooseYourDomain&quot;:&quot;W\u00e4hle deine Domain&quot;,&quot;clickAgain&quot;:&quot;Nochmal klicken, um den Shortlink in die Zwischenablage zu kopieren&quot;,&quot;clubBoard&quot;:&quot;Vereinsforum&quot;,&quot;confirm&quot;:&quot;Okay&quot;,&quot;copied&quot;:&quot;Copied to your clipboard&quot;,&quot;copyLink&quot;:&quot;Link kopieren&quot;,&quot;createAccount&quot;:&quot;Erstelle deinen Account&quot;,&quot;createNewMessage&quot;:&quot;Neue Nachricht verfassen&quot;,&quot;createShortlink&quot;:&quot;Shortlink erstellen&quot;,&quot;createShortNews&quot;:&quot;Kurzmeldung erstellen&quot;,&quot;dashboard&quot;:&quot;\u00dcbersicht&quot;,&quot;dataAdministration&quot;:&quot;Datenpflege&quot;,&quot;debug&quot;:&quot;Debug&quot;,&quot;deleteAll&quot;:&quot;Alle l\u00f6schen&quot;,&quot;deleteConfirm&quot;:&quot;Ja, alle l\u00f6schen.&quot;,&quot;editText&quot;:&quot;Bearbeiten&quot;,&quot;forgotPassword&quot;:&quot;Passwort vergessen?&quot;,&quot;forgotUsername&quot;:&quot;Username vergessen?&quot;,&quot;forgotLoginDetails&quot;:&quot;Username oder Passwort vergessen?&quot;,&quot;forum&quot;:&quot;forum&quot;,&quot;groundhoppingTool&quot;:&quot;Groundhopping-Tool&quot;,&quot;lastMatch&quot;:&quot;Letzte Begegnung&quot;,&quot;signin&quot;:&quot;Anmelden&quot;,&quot;login&quot;:&quot;Login&quot;,&quot;logOut&quot;:&quot;Abmelden&quot;,&quot;manageFavorites&quot;:&quot;Favoriten verwalten&quot;,&quot;marketValue&quot;:&quot;Marktwert&quot;,&quot;matchplan&quot;:&quot;Spielplan&quot;,&quot;messages&quot;:&quot;Nachrichten&quot;,&quot;myClub&quot;:&quot;Mein Verein&quot;,&quot;myClubText&quot;:&quot;Mit einem Transfermarkt-Account kannst du deinen Lieblingsverein hinterlegen und findest an dieser Stelle dann alle wichtigen Informationen zu deinem Verein (Spiele, News, Quick links).&quot;,&quot;myDreamTeam&quot;:&quot;Meine Traumelf&quot;,&quot;myFavorites&quot;:&quot;Meine Favoriten&quot;,&quot;myFavoritesText&quot;:&quot;Mit einem Transfermarkt-Account kannst du dir jede beliebige Seite als Favorit speichern und dann mit einem Klick erreichen.&quot;,&quot;myProfile&quot;:&quot;Mein Profil&quot;,&quot;news&quot;:&quot;News&quot;,&quot;newsAdministration&quot;:&quot;News-Administration&quot;,&quot;nextMatch&quot;:&quot;N\u00e4chste Begegnung&quot;,&quot;noNewNotifications&quot;:&quot;Keine neuen Benachrichtigungen&quot;,&quot;notifications&quot;:&quot;Benachrichtigungen&quot;,&quot;notificationsDeletedAutomatically&quot;:&quot;Hinweis: Notifications werden nach 30 Tagen automatisch gel\u00f6scht.&quot;,&quot;notifyDeleteMessage&quot;:&quot;Private Nachrichten, die \u00e4lter als 45 Tage sind, werden zuk\u00fcnftig von Zeit zu Zeit gel\u00f6scht.&quot;,&quot;or&quot;:&quot;oder&quot;,&quot;other&quot;:&quot;Sonstiges&quot;,&quot;overview&quot;:&quot;Zum Vereins-\u00dcberblick&quot;,&quot;password&quot;:&quot;Passwort&quot;,&quot;playerRatings&quot;:&quot;Spielernoten abgeben&quot;,&quot;playerWatchlist&quot;:&quot;Spieler-Watchlist&quot;,&quot;postponed&quot;:&quot;verlegt&quot;,&quot;profile&quot;:&quot;Profil&quot;,&quot;progDebug&quot;:&quot;Prog. Debug&quot;,&quot;progProfile&quot;:&quot;Prog. Profile&quot;,&quot;registerNow&quot;:&quot;Jetzt registrieren&quot;,&quot;rememberMe&quot;:&quot;Eingeloggt bleiben&quot;,&quot;removeFavorite&quot;:&quot;Favoriten entfernen&quot;,&quot;rumors&quot;:&quot;Ger\u00fcchte&quot;,&quot;schedule&quot;:&quot;Zum Spielplan&quot;,&quot;sessionExpired&quot;:&quot;Deine Sitzung bei Transfermarkt ist abgelaufen. Bitte logge dich noch einmal ein.&quot;,&quot;sessionExpiredTitle&quot;:&quot;Sitzung abgelaufen&quot;,&quot;setting&quot;:&quot;Einstellungen&quot;,&quot;shortlink&quot;:&quot;Shortlink&quot;,&quot;shortLinkCreationError&quot;:&quot;An error occured creating the shortlink.&quot;,&quot;shortLinkHasBeenCreated&quot;:&quot;Shortlink has been created an was copied to your clipboard&quot;,&quot;shortLinkIsBeingCreated&quot;:&quot;Creating shortlink ...&quot;,&quot;showAllMessages&quot;:&quot;Alle Nachrichten anzeigen&quot;,&quot;totalMarketValue&quot;:&quot;Gesamtmarktwert&quot;,&quot;translation&quot;:&quot;Translation&quot;,&quot;username&quot;:&quot;Username&quot;,&quot;whyRegister&quot;:&quot;Warum registrieren?&quot;,&quot;Bitte korrigieren Sie die markierten Felder&quot;:&quot;Bitte korrigieren Sie die markierten Felder&quot;,&quot;mindestensDreiZeichen&quot;:&quot;Mindestens drei Zeichen&quot;,&quot;mindestensAchtZeichen&quot;:&quot;Mindestens acht Zeichen&quot;,&quot;pleaseCorrectFields&quot;:&quot;profil&quot;,&quot;minThreeCharacters&quot;:&quot;Mindestens 3 Zeichen&quot;,&quot;minEightCharacters&quot;:&quot;Mindestens 8 Zeichen&quot;,&quot;noAtCharacter&quot;:&quot;\&quot;@\&quot; ist nicht im Username erlaubt&quot;,&quot;agentProfile&quot;:&quot;Mein Agenturprofil&quot;}' page-title="Weltmeisterschaft 2022 - Teilnehmende Teams | Transfermarkt" tld="de" agent-profile=""  />
+                </div>
+            </div>
+        
+        
+                        <!-- mobile end -->
+            <nav class="main-navbar">
+                                    <a href="/" class="main-navbar__lp-link " onclick="tmEvent('hauptnavi', '/', 'News')">
+                        News                    </a>
+                                    <a href="/navigation/transfersundgeruechte" class="main-navbar__lp-link " onclick="tmEvent('hauptnavi', '/navigation/transfersundgeruechte', 'Transfers & Gerüchte')">
+                        Transfers & Gerüchte                    </a>
+                                    <a href="/navigation/marktwerte" class="main-navbar__lp-link " onclick="tmEvent('hauptnavi', '/navigation/marktwerte', 'Marktwerte')">
+                        Marktwerte                    </a>
+                                    <a href="/navigation/wettbewerbe" class="main-navbar__lp-link " onclick="tmEvent('hauptnavi', '/navigation/wettbewerbe', 'Wettbewerbe')">
+                        Wettbewerbe                    </a>
+                                    <a href="/navigation/statistiken" class="main-navbar__lp-link " onclick="tmEvent('hauptnavi', '/navigation/statistiken', 'Statistiken')">
+                        Statistiken                    </a>
+                                    <a href="/navigation/community" class="main-navbar__lp-link " onclick="tmEvent('hauptnavi', '/navigation/community', 'Community')">
+                        Community                    </a>
+                                    <a href="/navigation/gaming" class="main-navbar__lp-link " onclick="tmEvent('hauptnavi', '/navigation/gaming', 'Gaming')">
+                        Gaming                    </a>
+                                <div class="main-navbar__details">
+                    <div class="hamburger">
+                        <em></em>
+                    </div>
+                    <div class="dropdown-layer"></div>
+                    <div class="main-navbar__dropdown">
+                                                            <div class="recommendation">
+        
+    
+                            <div class="tm-discover__hero-container tm-discover__hero-container-grid tm-discover-container-grid">
+                    
+                                    <section class="tm-button-list__wrapper tm-button-list__wrapper--two-thirds  "><span class="tm-discover__h2">Empfehlungen</span><ul class="tm-button-list"><li><a
+                        href="/bundesliga/startseite/wettbewerb/L1"
+                        title="Bundesliga"
+                        target=""
+                        class="tm-button-list__list-item tm-button-list__list-item--big "
+                        onclick="tmEvent('recommendations_recommendation', '/bundesliga/startseite/wettbewerb/L1' , '1_1', 'buttonList');"
+                    ><img
+                            src="https://tmssl.akamaized.net//images/logo/homepageWappen150x150/l1.png?lm=1525905518"
+                            alt="Bundesliga"
+                            class="tm-button-list__image tm-button-list__image--big 1"
+                            width="54"
+                            height="36"
+                        ></a></li><li><a
+                        href="/2-bundesliga/startseite/wettbewerb/L2"
+                        title="2. Bundesliga"
+                        target=""
+                        class="tm-button-list__list-item tm-button-list__list-item--big "
+                        onclick="tmEvent('recommendations_recommendation', '/2-bundesliga/startseite/wettbewerb/L2' , '1_2', 'buttonList');"
+                    ><img
+                            src="https://tmssl.akamaized.net//images/logo/homepageWappen150x150/l2.png?lm=1525905553"
+                            alt="2. Bundesliga"
+                            class="tm-button-list__image tm-button-list__image--big 1"
+                            width="54"
+                            height="36"
+                        ></a></li><li><a
+                        href="/3-liga/startseite/wettbewerb/L3"
+                        title="3. Liga"
+                        target=""
+                        class="tm-button-list__list-item tm-button-list__list-item--big "
+                        onclick="tmEvent('recommendations_recommendation', '/3-liga/startseite/wettbewerb/L3' , '1_3', 'buttonList');"
+                    ><img
+                            src="https://tmssl.akamaized.net//images/logo/homepageWappen150x150/l3.png?lm=1569702802"
+                            alt="3. Liga"
+                            class="tm-button-list__image tm-button-list__image--big 1"
+                            width="54"
+                            height="36"
+                        ></a></li><li><a
+                        href="/uefa-champions-league/startseite/wettbewerb/CL"
+                        title="UEFA Champions League"
+                        target=""
+                        class="tm-button-list__list-item tm-button-list__list-item--big "
+                        onclick="tmEvent('recommendations_recommendation', '/uefa-champions-league/startseite/wettbewerb/CL' , '1_4', 'buttonList');"
+                    ><img
+                            src="https://tmssl.akamaized.net//images/logo/homepageWappen150x150/cl.png?lm=1626810555"
+                            alt="UEFA Champions League"
+                            class="tm-button-list__image tm-button-list__image--big 1"
+                            width="54"
+                            height="36"
+                        ></a></li><li><a
+                        href="/premier-league/startseite/wettbewerb/GB1"
+                        title="Premier League"
+                        target=""
+                        class="tm-button-list__list-item tm-button-list__list-item--big "
+                        onclick="tmEvent('recommendations_recommendation', '/premier-league/startseite/wettbewerb/GB1' , '1_5', 'buttonList');"
+                    ><img
+                            src="https://tmssl.akamaized.net//images/logo/homepageWappen150x150/gb1.png?lm=1521104656"
+                            alt="Premier League"
+                            class="tm-button-list__image tm-button-list__image--big 1"
+                            width="54"
+                            height="36"
+                        ></a></li><li><a
+                        href="/dfb-pokal/startseite/wettbewerb/DFB"
+                        title="DFB-Pokal"
+                        target=""
+                        class="tm-button-list__list-item tm-button-list__list-item--big "
+                        onclick="tmEvent('recommendations_recommendation', '/dfb-pokal/startseite/wettbewerb/DFB' , '1_6', 'buttonList');"
+                    ><img
+                            src="https://tmssl.akamaized.net//images/logo/homepageWappen150x150/dfb.png?lm=1520938419"
+                            alt="DFB-Pokal"
+                            class="tm-button-list__image tm-button-list__image--big 1"
+                            width="54"
+                            height="36"
+                        ></a></li></ul></section>
+                                                                                
+        
+    
+                
+                                    <section class="tm-button-list__wrapper tm-button-list__wrapper--one-third  tm-button-list__desktop"><span class="tm-discover__h2">Für Spielerberater</span><ul class="tm-button-list"><li><a
+                        href="/agent-support/beraterIndex/berater"
+                        title="Berater-Support"
+                        target="_self"
+                        class="tm-button-list__list-item tm-button-list__list-item--big tm-button-list__agent"
+                        onclick="tmEvent('recommendations_recommendation', '/agent-support/beraterIndex/berater' , '2_1', 'buttonList');"
+                    ><img
+                            src="https://tmsi.akamaized.net/rebrush/navigation/agent-support.webp"
+                            alt=""
+                            class="tm-button-list__image tm-button-list__image--big tm-button-list__image--country tm-button-list__image--border"
+                            width="54"
+                            height="36"
+                        >Berater-<br>Support</a></li><li><a
+                        href="/berater/beraterfirmenuebersicht/berater"
+                        title="Berater-Firmen"
+                        target="_self"
+                        class="tm-button-list__list-item tm-button-list__list-item--big tm-button-list__agent"
+                        onclick="tmEvent('recommendations_recommendation', '/berater/beraterfirmenuebersicht/berater' , '2_2', 'buttonList');"
+                    ><img
+                            src="https://tmsi.akamaized.net/rebrush/navigation/agent-statistic.webp"
+                            alt=""
+                            class="tm-button-list__image tm-button-list__image--big tm-button-list__image--country tm-button-list__image--border"
+                            width="54"
+                            height="36"
+                        >Berater-<br>Firmen</a></li><li><a
+                        href="/premium-service/berater"
+                        title="Premium Service"
+                        target="_self"
+                        class="tm-button-list__list-item tm-button-list__list-item--big tm-button-list__agent"
+                        onclick="tmEvent('recommendations_recommendation', '/premium-service/berater' , '2_3', 'buttonList');"
+                    ><img
+                            src="https://tmsi.akamaized.net/rebrush/navigation/premium-service.webp"
+                            alt=""
+                            class="tm-button-list__image tm-button-list__image--big tm-button-list__image--country tm-button-list__image--border"
+                            width="54"
+                            height="36"
+                        >Premium<br>Service</a></li></ul></section>
+                                                                                
+        
+    
+                
+                                            
+<section class="tm-link-list-container tm-link-list--full ">
+        <div
+        class="tm-link-list-element"
+        role="navigation"
+        aria-label=""
+    >
+                    
+                        
+                                            <ul
+    class="tm-link-list-unordered   recommendation__links"
+>
+            <li
+            class="tm-link-list-item"
+        >
+                            <a
+                    class="tm-link__arrow  "
+                    href="/video"
+                    title="Video"
+                    target="_self"
+                    onclick="tmEvent('recommendations_recommendation', '/video' , '3_1','linkList');"
+                >
+                    Video ▶️
+                </a>
+                    </li>
+            <li
+            class="tm-link-list-item"
+        >
+                            <a
+                    class="tm-link__arrow  "
+                    href="/statistik/neuestetransfers"
+                    title="Neueste Transfers"
+                    target="_self"
+                    onclick="tmEvent('recommendations_recommendation', '/statistik/neuestetransfers' , '3_2','linkList');"
+                >
+                    Neueste Transfers
+                </a>
+                    </li>
+            <li
+            class="tm-link-list-item"
+        >
+                            <a
+                    class="tm-link__arrow  "
+                    href="/geruchtekuche/detail/forum/154"
+                    title="Gerüchteküche"
+                    target="_self"
+                    onclick="tmEvent('recommendations_recommendation', '/geruchtekuche/detail/forum/154' , '3_3','linkList');"
+                >
+                    Gerüchteküche
+                </a>
+                    </li>
+            <li
+            class="tm-link-list-item"
+        >
+                            <a
+                    class="tm-link__arrow  "
+                    href="/uebersicht/index/forum"
+                    title="Alle Foren"
+                    target="_self"
+                    onclick="tmEvent('recommendations_recommendation', '/uebersicht/index/forum' , '3_4','linkList');"
+                >
+                    Alle Foren
+                </a>
+                    </li>
+            <li
+            class="tm-link-list-item"
+        >
+                            <a
+                    class="tm-link__arrow  "
+                    href="/aktuell/newsarchiv"
+                    title="Alle News"
+                    target="_self"
+                    onclick="tmEvent('recommendations_recommendation', '/aktuell/newsarchiv' , '3_5','linkList');"
+                >
+                    Alle News
+                </a>
+                    </li>
+    </ul>
+                                            <ul
+    class="tm-link-list-unordered   recommendation__links"
+>
+            <li
+            class="tm-link-list-item"
+        >
+                            <a
+                    class="tm-link__arrow  "
+                    href="/marktwertanalyse/detail/forum/67"
+                    title="Marktwert-Analyse"
+                    target="_self"
+                    onclick="tmEvent('recommendations_recommendation', '/marktwertanalyse/detail/forum/67' , '3_6','linkList');"
+                >
+                    Marktwert-Analyse
+                </a>
+                    </li>
+            <li
+            class="tm-link-list-item"
+        >
+                            <a
+                    class="tm-link__arrow  "
+                    href="/vereinsforen-1-liga/index/forum/3"
+                    title="Vereinsforen Bundesliga"
+                    target="_self"
+                    onclick="tmEvent('recommendations_recommendation', '/vereinsforen-1-liga/index/forum/3' , '3_7','linkList');"
+                >
+                    Vereinsforen Bundesliga
+                </a>
+                    </li>
+            <li
+            class="tm-link-list-item"
+        >
+                            <a
+                    class="tm-link__arrow  "
+                    href="/vereinsforen-2-liga/index/forum/4"
+                    title="Vereinsforen 2. Bundesliga"
+                    target="_self"
+                    onclick="tmEvent('recommendations_recommendation', '/vereinsforen-2-liga/index/forum/4' , '3_8','linkList');"
+                >
+                    Vereinsforen 2. Bundesliga
+                </a>
+                    </li>
+            <li
+            class="tm-link-list-item"
+        >
+                            <a
+                    class="tm-link__arrow  "
+                    href="/vereinsforen-3-liga/index/forum/158"
+                    title="Vereinsforen 3. Liga"
+                    target="_self"
+                    onclick="tmEvent('recommendations_recommendation', '/vereinsforen-3-liga/index/forum/158' , '3_9','linkList');"
+                >
+                    Vereinsforen 3. Liga
+                </a>
+                    </li>
+            <li
+            class="tm-link-list-item"
+        >
+                            <a
+                    class="tm-link__arrow  "
+                    href="/sportwetten/"
+                    title="Sportwetten"
+                    target="_self"
+                    onclick="tmEvent('recommendations_recommendation', '/sportwetten/' , '3_10','linkList');"
+                >
+                    Sportwetten
+                </a>
+                    </li>
+    </ul>
+                        </div>
+
+    </section>
+                                                                        
+        
+    
+                
+                                    <section class="tm-button-list__wrapper tm-button-list__wrapper--full  tm-button-list__mobile"><span class="tm-discover__h2">Für Spielerberater</span><ul class="tm-button-list"><li><a
+                        href="/agent-support/beraterIndex/berater"
+                        title="Berater-Support"
+                        target="_self"
+                        class="tm-button-list__list-item tm-button-list__list-item--big tm-button-list__agent"
+                        onclick="tmEvent('recommendations_recommendation', '/agent-support/beraterIndex/berater' , '4_1', 'buttonList');"
+                    ><img
+                            src="https://tmsi.akamaized.net/rebrush/navigation/agent-support.webp"
+                            alt=""
+                            class="tm-button-list__image tm-button-list__image--big tm-button-list__image--country tm-button-list__image--border"
+                            width="54"
+                            height="36"
+                        >Berater-<br>Support</a></li><li><a
+                        href="/berater/beraterfirmenuebersicht/berater"
+                        title="Berater-Firmen"
+                        target="_self"
+                        class="tm-button-list__list-item tm-button-list__list-item--big tm-button-list__agent"
+                        onclick="tmEvent('recommendations_recommendation', '/berater/beraterfirmenuebersicht/berater' , '4_2', 'buttonList');"
+                    ><img
+                            src="https://tmsi.akamaized.net/rebrush/navigation/agent-statistic.webp"
+                            alt=""
+                            class="tm-button-list__image tm-button-list__image--big tm-button-list__image--country tm-button-list__image--border"
+                            width="54"
+                            height="36"
+                        >Berater-<br>Firmen</a></li><li><a
+                        href="/premium-service/berater"
+                        title="Premium Service"
+                        target="_self"
+                        class="tm-button-list__list-item tm-button-list__list-item--big tm-button-list__agent"
+                        onclick="tmEvent('recommendations_recommendation', '/premium-service/berater' , '4_3', 'buttonList');"
+                    ><img
+                            src="https://tmsi.akamaized.net/rebrush/navigation/premium-service.webp"
+                            alt=""
+                            class="tm-button-list__image tm-button-list__image--big tm-button-list__image--country tm-button-list__image--border"
+                            width="54"
+                            height="36"
+                        >Premium<br>Service</a></li></ul></section>
+                                                                                
+                    </div>
+        
+    </div>
+                                                </div>
+                </div>
+            </nav>
+
+            <div class="quick-select-wrapper">
+    
+    <tm-quick-select defaultCountry="0" defaultCompetition="FIWC" defaultClub="" defaultPlayer="" dropdown-visible="" translations='{"home":"Home","country":"Land","competition":"Wettbewerb","club":"Verein","player":"Spieler","attack":"Sturm","midfield":"Mittelfeld","defense":"Abwehr","goalkeeper":"Torwart"}'>
+    </tm-quick-select>
+</div>
+
+            
+        
+        <script type="text/javascript">//H3IXPRY("billboard")</script>
+<div class="werbung ad-placement-note werbung-billboard" data-ad-placement-note="Werbung">
+  <div id="superbanner"></div>
+</div>
+
+<span class="H3IXPRY_end"></span>
+
+
+        
+        <main id="tm-main">
+            
+<header class="data-header">
+    <div class="data-header__headline-container">
+                        <div class="data-header__headline-wrapper data-header__headline-wrapper--oswald">
+                Weltmeisterschaft                </div>
+                    </div>
+
+            <div class="data-header__badge-container">
+                                <a href="/weltmeisterschaft/erfolge/pokalwettbewerb/FIWC"
+                   class="data-header__success-data"
+                   title="Brasilien"
+                >
+                    <img src="https://tmssl.akamaized.net//images/flagge/headerRund/26.png?lm=1520611569" title="Brasilien" alt="Brasilien" class="data-header__success-data--flag lazy" />                    <span class="data-header__success-number">
+                        5                    </span>
+                </a>
+                                    <a href="/weltmeisterschaft/erfolge/pokalwettbewerb/FIWC"
+                   class="data-header__success-data"
+                   title="Deutschland"
+                >
+                    <img src="https://tmssl.akamaized.net//images/flagge/headerRund/40.png?lm=1520612525" title="Deutschland" alt="Deutschland" class="data-header__success-data--flag lazy" />                    <span class="data-header__success-number">
+                        4                    </span>
+                </a>
+                                    <a href="/weltmeisterschaft/erfolge/pokalwettbewerb/FIWC"
+                   class="data-header__success-data"
+                   title="Italien"
+                >
+                    <img src="https://tmssl.akamaized.net//images/flagge/headerRund/75.png?lm=1520611569" title="Italien" alt="Italien" class="data-header__success-data--flag lazy" />                    <span class="data-header__success-number">
+                        4                    </span>
+                </a>
+                                    <a href="/weltmeisterschaft/erfolge/pokalwettbewerb/FIWC"
+                   class="data-header__success-data"
+                   title="Argentinien"
+                >
+                    <img src="https://tmssl.akamaized.net//images/flagge/headerRund/9.png?lm=1520611569" title="Argentinien" alt="Argentinien" class="data-header__success-data--flag lazy" />                    <span class="data-header__success-number">
+                        3                    </span>
+                </a>
+                                    <a href="/weltmeisterschaft/erfolge/pokalwettbewerb/FIWC"
+                   class="data-header__success-data"
+                   title="Frankreich"
+                >
+                    <img src="https://tmssl.akamaized.net//images/flagge/headerRund/50.png?lm=1520611569" title="Frankreich" alt="Frankreich" class="data-header__success-data--flag lazy" />                    <span class="data-header__success-number">
+                        2                    </span>
+                </a>
+                                    <a href="/weltmeisterschaft/erfolge/pokalwettbewerb/FIWC"
+                   class="hide"
+                   title="Uruguay"
+                >
+                    <img src="https://tmssl.akamaized.net//images/flagge/headerRund/179.png?lm=1520611569" title="Uruguay" alt="Uruguay" class="data-header__success-data--flag lazy" />                    <span class="data-header__success-number">
+                        2                    </span>
+                </a>
+                                    <a href="/weltmeisterschaft/erfolge/pokalwettbewerb/FIWC"
+                   class="hide"
+                   title="Spanien"
+                >
+                    <img src="https://tmssl.akamaized.net//images/flagge/headerRund/157.png?lm=1520611569" title="Spanien" alt="Spanien" class="data-header__success-data--flag lazy" />                    <span class="data-header__success-number">
+                        1                    </span>
+                </a>
+                                    <a href="/weltmeisterschaft/erfolge/pokalwettbewerb/FIWC"
+                   class="hide"
+                   title="England"
+                >
+                    <img src="https://tmssl.akamaized.net//images/flagge/headerRund/189.png?lm=1520611569" title="England" alt="England" class="data-header__success-data--flag lazy" />                    <span class="data-header__success-number">
+                        1                    </span>
+                </a>
+                                    <a href="/weltmeisterschaft/erfolge/pokalwettbewerb/FIWC"
+                   title="Alle Sieger"
+                   class="data-header__success-more"
+                >
+                </a>
+                            </div>
+        
+            <div class="data-header__box--big">
+            <a class="data-header__box__club-link" href="/wettbewerbe/national/wettbewerbe/0">
+                    <img src="https://tmssl.akamaized.net//images/erfolge/fix/101.png?lm=1774860361" title="101.png" alt="101.png" class="" />            </a>
+            <div class="data-header__club-info">
+                <span class="data-header__club">
+                    Turnierrekorde                </span>
+                <span class="data-header__label">
+                    Siege:
+                    <span class="data-header__content">
+                        <a title="Brasilien" href="/brasilien/startseite/verein/3439"><img src="https://tmssl.akamaized.net//images/wappen/verytiny/3439.png?lm=1621002439" title="Brasilien" alt="Brasilien" class="" /></a>&nbsp;<a title="Brasilien" href="/brasilien/startseite/verein/3439">Brasilien</a>&nbsp;<span class="tabellenplatz">5&nbsp;mal</span>                    </span>
+                </span>
+
+                                    <span class="data-header__label">
+                        Spiele:
+                        <span class="data-header__content">
+                            <div class="di nowrap"><span class="hide-for-small"><a title="Lionel Messi" href="/lionel-messi/profil/spieler/28003">L. Messi</a></span></div><div class="di nowrap"><span class="show-for-small"><a title="Lionel Messi" href="/lionel-messi/profil/spieler/28003">L. Messi</a></span></div>&nbsp;&nbsp;<span class="tabellenplatz">26 Spiele</span>                        </span>
+                    </span>
+                                        <span class="data-header__label">
+                        Tore:
+                        <span class="data-header__content">
+                            <div class="di nowrap"><span class="hide-for-small"><a title="Miroslav Klose" href="/miroslav-klose/profil/spieler/10">M. Klose</a></span></div><div class="di nowrap"><span class="show-for-small"><a title="Miroslav Klose" href="/miroslav-klose/profil/spieler/10">M. Klose</a></span></div>&nbsp;&nbsp;<span class="tabellenplatz">16 Tore</span>                        </span>
+                    </span>
+                                </div>
+        </div>
+    
+    <div class="data-header__profile-container">
+        <img src="https://tmssl.akamaized.net//images/logo/header/fiwc.png?lm=1747989919" title="Weltmeisterschaft" alt="Weltmeisterschaft" class="" />    </div>
+
+            <div class="data-header__box--small">
+            <a href="/weltmeisterschaft/teilnehmer/pokalwettbewerb/FIWC" class="data-header__market-value-wrapper">
+                17,18 <span class="waehrung">Mrd. €</span>                <p class="data-header__last-update">
+                    Gesamtmarktwert                </p>
+            </a>
+        </div>
+        
+    <div class="data-header__info-box">
+        <div class="data-header__details">
+            <ul class="data-header__items">
+                <li class="data-header__label">
+                    Pokalart:
+                    <span itemprop="dataItem" class="data-header__content">
+                        Nationalmannschaft                    </span>
+                </li>
+                <li class="data-header__label">
+                    Teilnehmer:
+                    <span itemprop="dataItem" class="data-header__content">
+                        48                    </span>
+                </li>
+                            </ul>
+
+            <ul class="data-header__items">
+                                    <li class="data-header__label">
+                            &oslash;-Marktwert:
+                            <span class="data-header__content">
+                                13,43 Mio. €                            </span>
+                    </li>
+                                </ul>
+        </div>
+    </div>
+</header>
+
+
+<a href="https://www.transfermarkt.de/video"
+        target="0"
+    class="db mt10"
+        onclick="tmEvent('banner', 'https://www.transfermarkt.de/video', 'd-day-banner');"
+>
+    <img
+        loading="lazy"
+        src="https://dzjovqk3zamsg.cloudfront.net/18052026_TM-TV-Highlights-2025-26-Web_Banner-Site.jpg"
+        width="1034"
+        height="99"
+        alt="deadline-day banner"
+    >
+</a>
+
+<script type="text/javascript">
+    (() => {
+        const cookies = document.cookie
+            .split(';')
+            .map(c => c.trim().split('='))
+            .reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {});
+        const isContentPassUser = cookies?._cpauthhint !== undefined;
+        if (isContentPassUser) {
+            const adNodes = document.querySelectorAll('.ad-placement-note');
+            adNodes.forEach(node => node.remove());
+        }
+    })();
+</script><tm-subnavigation
+    controller="pokalwettbewerb"
+    id="FIWC"
+    season="2021"
+    section="pokalwettbewerb"
+    style="display: block; margin: 0 5px;">
+</tm-subnavigation>
+<div class="row">
+    <div class="large-12 columns">
+                    <div class="box">
+                <h1 class="content-box-headline">
+                    Teilnehmer der Weltmeisterschaft                </h1>
+                                                                    <p class="info-content">
+                            In dieser Übersicht werden Teilnehmer der Weltmeisterschaft gelistet und in einer Landkarten-Grafik geographisch eingeordnet. Weitere Infos zu den gelisteten Mannschaften sind die Größe des Kaders, das Durchschnittsalter der teilnehmenden Spieler und der Gesamt- sowie der Durchschnittsmarktwert der Nationalmannschaften.                    </p>
+                                                                    <div class="content">
+                        <form class="js-switcher">
+                            <div class="row">
+                                <div class="large-12 columns">
+                                    <table class="auflistung">
+                                        <tbody>
+                                        <tr>
+                                            <td>Saison auswählen:</td>
+                                            <td>
+                                                <div class="inline-select">
+                                                    <select name="saison_id" data-placeholder="Saison wählen" class="chzn-select" tabindex="0">
+                                                                                                                    <option value="2029">2030</option>
+                                                                                                                    <option value="2025">2026</option>
+                                                                                                                    <option  selected="selected"value="2021">2022</option>
+                                                                                                                    <option value="2017">2018</option>
+                                                                                                                    <option value="2013">2014</option>
+                                                                                                                    <option value="2009">2010</option>
+                                                                                                                    <option value="2005">2006</option>
+                                                                                                                    <option value="2001">2002</option>
+                                                                                                                    <option value="1997">1998</option>
+                                                                                                                    <option value="1993">1994</option>
+                                                                                                                    <option value="1989">1990</option>
+                                                                                                                    <option value="1985">1986</option>
+                                                                                                                    <option value="1981">1982</option>
+                                                                                                                    <option value="1977">1978</option>
+                                                                                                                    <option value="1973">1974</option>
+                                                                                                                    <option value="1969">1970</option>
+                                                                                                                    <option value="1965">1966</option>
+                                                                                                                    <option value="1961">1962</option>
+                                                                                                                    <option value="1957">1958</option>
+                                                                                                                    <option value="1953">1954</option>
+                                                                                                                    <option value="1949">1950</option>
+                                                                                                                    <option value="1937">1938</option>
+                                                                                                                    <option value="1933">1934</option>
+                                                                                                                    <option value="1929">1930</option>
+                                                                                                            </select>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <input type="submit" class="small button" value="Anzeigen">
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                                    </div>
+                    </div>
+</div>
+<div class="row">
+    <div class="large-8 columns">
+                                            <div class="box">
+                <h2 class="content-box-headline">
+                    Später ins Turnier startende Mannschaften                </h2>
+                <div class="responsive-table">
+                    <div id="yw1" class="grid-view">
+<div class="summary"></div>
+<table class="items">
+<thead>
+<tr>
+<th class="hide" id="yw1_c0">wappen</th><th class="links" colspan="2" id="yw1_c1">Verein</th><th class="zentriert" id="yw1_c2">Kader</th><th class="zentriert" id="yw1_c3">&oslash-Alter</th><th class="zentriert" id="yw1_c4">WM-Teilnahmen</th><th class="zentriert" id="yw1_c5">Legionäre</th><th class="rechts" id="yw1_c6">Marktwert</th><th class="rechts" id="yw1_c7">&oslash-Marktwert</th></tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td class="zentriert no-border-rechts"><a title="England" href="/england/startseite/verein/3299"><img src="https://tmssl.akamaized.net//images/flagge/tiny/189.png?lm=1520611569" title="England" alt="England" class="flaggenrahmen" /></a></td><td class="links no-border-links hauptlink"><a title="England" href="/england/startseite/verein/3299">England</a></td><td class="zentriert">35</td><td class="zentriert">27,3</td><td class="zentriert">17</td><td class="zentriert">11,4 %</td><td class="rechts">1,62 Mrd. €</td><td class="rechts">46,19 Mio. €</td></tr>
+<tr class="even">
+<td class="zentriert no-border-rechts"><a title="Frankreich" href="/frankreich/startseite/verein/3377"><img src="https://tmssl.akamaized.net//images/flagge/tiny/50.png?lm=1520611569" title="Frankreich" alt="Frankreich" class="flaggenrahmen" /></a></td><td class="links no-border-links hauptlink"><a title="Frankreich" href="/frankreich/startseite/verein/3377">Frankreich</a></td><td class="zentriert">26</td><td class="zentriert">27,0</td><td class="zentriert">17</td><td class="zentriert">73,1 %</td><td class="rechts">1,47 Mrd. €</td><td class="rechts">56,67 Mio. €</td></tr>
+<tr class="odd">
+<td class="zentriert no-border-rechts"><a title="Spanien" href="/spanien/startseite/verein/3375"><img src="https://tmssl.akamaized.net//images/flagge/tiny/157.png?lm=1520611569" title="Spanien" alt="Spanien" class="flaggenrahmen" /></a></td><td class="links no-border-links hauptlink"><a title="Spanien" href="/spanien/startseite/verein/3375">Spanien</a></td><td class="zentriert">27</td><td class="zentriert">26,7</td><td class="zentriert">18</td><td class="zentriert">29,6 %</td><td class="rechts">1,31 Mrd. €</td><td class="rechts">48,37 Mio. €</td></tr>
+<tr class="even">
+<td class="zentriert no-border-rechts"><a title="Portugal" href="/portugal/startseite/verein/3300"><img src="https://tmssl.akamaized.net//images/flagge/tiny/136.png?lm=1520611569" title="Portugal" alt="Portugal" class="flaggenrahmen" /></a></td><td class="links no-border-links hauptlink"><a title="Portugal" href="/portugal/startseite/verein/3300">Portugal</a></td><td class="zentriert">27</td><td class="zentriert">28,0</td><td class="zentriert">10</td><td class="zentriert">81,5 %</td><td class="rechts">968,50 Mio. €</td><td class="rechts">35,87 Mio. €</td></tr>
+<tr class="odd">
+<td class="zentriert no-border-rechts"><a title="Brasilien" href="/brasilien/startseite/verein/3439"><img src="https://tmssl.akamaized.net//images/flagge/tiny/26.png?lm=1520611569" title="Brasilien" alt="Brasilien" class="flaggenrahmen" /></a></td><td class="links no-border-links hauptlink"><a title="Brasilien" href="/brasilien/startseite/verein/3439">Brasilien</a></td><td class="zentriert">26</td><td class="zentriert">29,2</td><td class="zentriert">23</td><td class="zentriert">73,1 %</td><td class="rechts">908,70 Mio. €</td><td class="rechts">34,95 Mio. €</td></tr>
+<tr class="even">
+<td class="zentriert no-border-rechts"><a title="Niederlande" href="/niederlande/startseite/verein/3379"><img src="https://tmssl.akamaized.net//images/flagge/tiny/122.png?lm=1520611569" title="Niederlande" alt="Niederlande" class="flaggenrahmen" /></a></td><td class="links no-border-links hauptlink"><a title="Niederlande" href="/niederlande/startseite/verein/3379">Niederlande</a></td><td class="zentriert">25</td><td class="zentriert">27,1</td><td class="zentriert">12</td><td class="zentriert">84,0 %</td><td class="rechts">766,00 Mio. €</td><td class="rechts">30,64 Mio. €</td></tr>
+<tr class="odd">
+<td class="zentriert no-border-rechts"><a title="Argentinien" href="/argentinien/startseite/verein/3437"><img src="https://tmssl.akamaized.net//images/flagge/tiny/9.png?lm=1520611569" title="Argentinien" alt="Argentinien" class="flaggenrahmen" /></a></td><td class="links no-border-links hauptlink"><a title="Argentinien" href="/argentinien/startseite/verein/3437">Argentinien</a></td><td class="zentriert">29</td><td class="zentriert">28,1</td><td class="zentriert">20</td><td class="zentriert">82,8 %</td><td class="rechts">761,20 Mio. €</td><td class="rechts">26,25 Mio. €</td></tr>
+<tr class="even">
+<td class="zentriert no-border-rechts"><a title="Belgien" href="/belgien/startseite/verein/3382"><img src="https://tmssl.akamaized.net//images/flagge/tiny/19.png?lm=1520611569" title="Belgien" alt="Belgien" class="flaggenrahmen" /></a></td><td class="links no-border-links hauptlink"><a title="Belgien" href="/belgien/startseite/verein/3382">Belgien</a></td><td class="zentriert">26</td><td class="zentriert">27,6</td><td class="zentriert">15</td><td class="zentriert">88,5 %</td><td class="rechts">558,20 Mio. €</td><td class="rechts">21,47 Mio. €</td></tr>
+<tr class="odd">
+<td class="zentriert no-border-rechts"><a title="Deutschland" href="/deutschland/startseite/verein/3262"><img src="https://tmssl.akamaized.net//images/flagge/tiny/40.png?lm=1520612525" title="Deutschland" alt="Deutschland" class="flaggenrahmen" /></a></td><td class="links no-border-links hauptlink"><a title="Deutschland" href="/deutschland/startseite/verein/3262">Deutschland</a></td><td class="zentriert">10</td><td class="zentriert">26,6</td><td class="zentriert">21</td><td class="zentriert">70,0 %</td><td class="rechts">476,00 Mio. €</td><td class="rechts">47,60 Mio. €</td></tr>
+<tr class="even">
+<td class="zentriert no-border-rechts"><a title="Senegal" href="/senegal/startseite/verein/3499"><img src="https://tmssl.akamaized.net//images/flagge/tiny/149.png?lm=1520611569" title="Senegal" alt="Senegal" class="flaggenrahmen" /></a></td><td class="links no-border-links hauptlink"><a title="Senegal" href="/senegal/startseite/verein/3499">Senegal</a></td><td class="zentriert">28</td><td class="zentriert">26,9</td><td class="zentriert">4</td><td class="zentriert">100,0 %</td><td class="rechts">474,00 Mio. €</td><td class="rechts">16,93 Mio. €</td></tr>
+<tr class="odd">
+<td class="zentriert no-border-rechts"><a title="Marokko" href="/marokko/startseite/verein/3575"><img src="https://tmssl.akamaized.net//images/flagge/tiny/107.png?lm=1520611569" title="Marokko" alt="Marokko" class="flaggenrahmen" /></a></td><td class="links no-border-links hauptlink"><a title="Marokko" href="/marokko/startseite/verein/3575">Marokko</a></td><td class="zentriert">29</td><td class="zentriert">25,3</td><td class="zentriert">8</td><td class="zentriert">89,7 %</td><td class="rechts">456,50 Mio. €</td><td class="rechts">15,74 Mio. €</td></tr>
+<tr class="even">
+<td class="zentriert no-border-rechts"><a title="Dänemark" href="/danemark/startseite/verein/3436"><img src="https://tmssl.akamaized.net//images/flagge/tiny/39.png?lm=1520611569" title="Dänemark" alt="Dänemark" class="flaggenrahmen" /></a></td><td class="links no-border-links hauptlink"><a title="Dänemark" href="/danemark/startseite/verein/3436">Dänemark</a></td><td class="zentriert">24</td><td class="zentriert">26,3</td><td class="zentriert">6</td><td class="zentriert">95,8 %</td><td class="rechts">368,00 Mio. €</td><td class="rechts">15,33 Mio. €</td></tr>
+<tr class="odd">
+<td class="zentriert no-border-rechts"><a title="Ecuador" href="/ecuador/startseite/verein/5750"><img src="https://tmssl.akamaized.net//images/flagge/tiny/44.png?lm=1520611569" title="Ecuador" alt="Ecuador" class="flaggenrahmen" /></a></td><td class="links no-border-links hauptlink"><a title="Ecuador" href="/ecuador/startseite/verein/5750">Ecuador</a></td><td class="zentriert">32</td><td class="zentriert">26,0</td><td class="zentriert">5</td><td class="zentriert">87,5 %</td><td class="rechts">366,73 Mio. €</td><td class="rechts">11,46 Mio. €</td></tr>
+<tr class="even">
+<td class="zentriert no-border-rechts"><a title="Uruguay" href="/uruguay/startseite/verein/3449"><img src="https://tmssl.akamaized.net//images/flagge/tiny/179.png?lm=1520611569" title="Uruguay" alt="Uruguay" class="flaggenrahmen" /></a></td><td class="links no-border-links hauptlink"><a title="Uruguay" href="/uruguay/startseite/verein/3449">Uruguay</a></td><td class="zentriert">28</td><td class="zentriert">28,5</td><td class="zentriert">16</td><td class="zentriert">100,0 %</td><td class="rechts">363,55 Mio. €</td><td class="rechts">12,98 Mio. €</td></tr>
+<tr class="odd">
+<td class="zentriert no-border-rechts"><a title="Kroatien" href="/kroatien/startseite/verein/3556"><img src="https://tmssl.akamaized.net//images/flagge/tiny/37.png?lm=1520611569" title="Kroatien" alt="Kroatien" class="flaggenrahmen" /></a></td><td class="links no-border-links hauptlink"><a title="Kroatien" href="/kroatien/startseite/verein/3556">Kroatien</a></td><td class="zentriert">26</td><td class="zentriert">28,3</td><td class="zentriert">7</td><td class="zentriert">92,3 %</td><td class="rechts">357,30 Mio. €</td><td class="rechts">13,74 Mio. €</td></tr>
+<tr class="even">
+<td class="zentriert no-border-rechts"><a title="Vereinigte Staaten" href="/vereinigte-staaten/startseite/verein/3505"><img src="https://tmssl.akamaized.net//images/flagge/tiny/184.png?lm=1520611569" title="Vereinigte Staaten" alt="Vereinigte Staaten" class="flaggenrahmen" /></a></td><td class="links no-border-links hauptlink"><a title="Vereinigte Staaten" href="/vereinigte-staaten/startseite/verein/3505">Vereinigte Staaten</a></td><td class="zentriert">27</td><td class="zentriert">26,4</td><td class="zentriert">12</td><td class="zentriert">70,4 %</td><td class="rechts">356,70 Mio. €</td><td class="rechts">13,21 Mio. €</td></tr>
+<tr class="odd">
+<td class="zentriert no-border-rechts"><a title="Schweiz" href="/schweiz/startseite/verein/3384"><img src="https://tmssl.akamaized.net//images/flagge/tiny/148.png?lm=1520611569" title="Schweiz" alt="Schweiz" class="flaggenrahmen" /></a></td><td class="links no-border-links hauptlink"><a title="Schweiz" href="/schweiz/startseite/verein/3384">Schweiz</a></td><td class="zentriert">26</td><td class="zentriert">28,3</td><td class="zentriert">13</td><td class="zentriert">92,3 %</td><td class="rechts">317,60 Mio. €</td><td class="rechts">12,22 Mio. €</td></tr>
+<tr class="even">
+<td class="zentriert no-border-rechts"><a title="Serbien" href="/serbien/startseite/verein/3438"><img src="https://tmssl.akamaized.net//images/flagge/tiny/215.png?lm=1520611569" title="Serbien" alt="Serbien" class="flaggenrahmen" /></a></td><td class="links no-border-links hauptlink"><a title="Serbien" href="/serbien/startseite/verein/3438">Serbien</a></td><td class="zentriert">28</td><td class="zentriert">26,8</td><td class="zentriert">3</td><td class="zentriert">82,1 %</td><td class="rechts">296,50 Mio. €</td><td class="rechts">10,59 Mio. €</td></tr>
+<tr class="odd">
+<td class="zentriert no-border-rechts"><a title="Ghana" href="/ghana/startseite/verein/3441"><img src="https://tmssl.akamaized.net//images/flagge/tiny/54.png?lm=1520611569" title="Ghana" alt="Ghana" class="flaggenrahmen" /></a></td><td class="links no-border-links hauptlink"><a title="Ghana" href="/ghana/startseite/verein/3441">Ghana</a></td><td class="zentriert">30</td><td class="zentriert">26,3</td><td class="zentriert">5</td><td class="zentriert">96,7 %</td><td class="rechts">288,78 Mio. €</td><td class="rechts">9,63 Mio. €</td></tr>
+<tr class="even">
+<td class="zentriert no-border-rechts"><a title="Japan" href="/japan/startseite/verein/3435"><img src="https://tmssl.akamaized.net//images/flagge/tiny/77.png?lm=1520611569" title="Japan" alt="Japan" class="flaggenrahmen" /></a></td><td class="links no-border-links hauptlink"><a title="Japan" href="/japan/startseite/verein/3435">Japan</a></td><td class="zentriert">27</td><td class="zentriert">28,1</td><td class="zentriert">8</td><td class="zentriert">88,9 %</td><td class="rechts">264,05 Mio. €</td><td class="rechts">9,78 Mio. €</td></tr>
+<tr class="odd">
+<td class="zentriert no-border-rechts"><a title="Polen" href="/polen/startseite/verein/3442"><img src="https://tmssl.akamaized.net//images/flagge/tiny/135.png?lm=1520611569" title="Polen" alt="Polen" class="flaggenrahmen" /></a></td><td class="links no-border-links hauptlink"><a title="Polen" href="/polen/startseite/verein/3442">Polen</a></td><td class="zentriert">25</td><td class="zentriert">27,7</td><td class="zentriert">9</td><td class="zentriert">84,0 %</td><td class="rechts">214,00 Mio. €</td><td class="rechts">8,56 Mio. €</td></tr>
+<tr class="even">
+<td class="zentriert no-border-rechts"><a title="Wales" href="/wales/startseite/verein/3864"><img src="https://tmssl.akamaized.net//images/flagge/tiny/191.png?lm=1520611569" title="Wales" alt="Wales" class="flaggenrahmen" /></a></td><td class="links no-border-links hauptlink"><a title="Wales" href="/wales/startseite/verein/3864">Wales</a></td><td class="zentriert">25</td><td class="zentriert">27,0</td><td class="zentriert">2</td><td class="zentriert">72,0 %</td><td class="rechts">199,05 Mio. €</td><td class="rechts">7,96 Mio. €</td></tr>
+<tr class="odd">
+<td class="zentriert no-border-rechts"><a title="Kamerun" href="/kamerun/startseite/verein/3434"><img src="https://tmssl.akamaized.net//images/flagge/tiny/31.png?lm=1520611569" title="Kamerun" alt="Kamerun" class="flaggenrahmen" /></a></td><td class="links no-border-links hauptlink"><a title="Kamerun" href="/kamerun/startseite/verein/3434">Kamerun</a></td><td class="zentriert">24</td><td class="zentriert">23,6</td><td class="zentriert">8</td><td class="zentriert">91,7 %</td><td class="rechts">197,40 Mio. €</td><td class="rechts">8,23 Mio. €</td></tr>
+<tr class="even">
+<td class="zentriert no-border-rechts"><a title="Südkorea" href="/sudkorea/startseite/verein/3589"><img src="https://tmssl.akamaized.net//images/flagge/tiny/87.png?lm=1520611569" title="Südkorea" alt="Südkorea" class="flaggenrahmen" /></a></td><td class="links no-border-links hauptlink"><a title="Südkorea" href="/sudkorea/startseite/verein/3589">Südkorea</a></td><td class="zentriert">26</td><td class="zentriert">28,2</td><td class="zentriert">12</td><td class="zentriert">76,9 %</td><td class="rechts">142,20 Mio. €</td><td class="rechts">5,47 Mio. €</td></tr>
+<tr class="odd">
+<td class="zentriert no-border-rechts"><a title="Kanada" href="/kanada/startseite/verein/3510"><img src="https://tmssl.akamaized.net//images/flagge/tiny/80.png?lm=1520611569" title="Kanada" alt="Kanada" class="flaggenrahmen" /></a></td><td class="links no-border-links hauptlink"><a title="Kanada" href="/kanada/startseite/verein/3510">Kanada</a></td><td class="zentriert">26</td><td class="zentriert">26,6</td><td class="zentriert">3</td><td class="zentriert">88,5 %</td><td class="rechts">129,55 Mio. €</td><td class="rechts">4,98 Mio. €</td></tr>
+<tr class="even">
+<td class="zentriert no-border-rechts"><a title="Mexiko" href="/mexiko/startseite/verein/6303"><img src="https://tmssl.akamaized.net//images/flagge/tiny/110.png?lm=1520611569" title="Mexiko" alt="Mexiko" class="flaggenrahmen" /></a></td><td class="links no-border-links hauptlink"><a title="Mexiko" href="/mexiko/startseite/verein/6303">Mexiko</a></td><td class="zentriert">12</td><td class="zentriert">26,9</td><td class="zentriert">18</td><td class="zentriert">0,0 %</td><td class="rechts">83,60 Mio. €</td><td class="rechts">6,97 Mio. €</td></tr>
+<tr class="odd">
+<td class="zentriert no-border-rechts"><a title="Tunesien" href="/tunesien/startseite/verein/3670"><img src="https://tmssl.akamaized.net//images/flagge/tiny/173.png?lm=1520611569" title="Tunesien" alt="Tunesien" class="flaggenrahmen" /></a></td><td class="links no-border-links hauptlink"><a title="Tunesien" href="/tunesien/startseite/verein/3670">Tunesien</a></td><td class="zentriert">26</td><td class="zentriert">26,6</td><td class="zentriert">7</td><td class="zentriert">76,9 %</td><td class="rechts">66,55 Mio. €</td><td class="rechts">2,56 Mio. €</td></tr>
+<tr class="even">
+<td class="zentriert no-border-rechts"><a title="Australien" href="/australien/startseite/verein/3433"><img src="https://tmssl.akamaized.net//images/flagge/tiny/12.png?lm=1520611569" title="Australien" alt="Australien" class="flaggenrahmen" /></a></td><td class="links no-border-links hauptlink"><a title="Australien" href="/australien/startseite/verein/3433">Australien</a></td><td class="zentriert">26</td><td class="zentriert">27,2</td><td class="zentriert">7</td><td class="zentriert">84,6 %</td><td class="rechts">51,33 Mio. €</td><td class="rechts">1,97 Mio. €</td></tr>
+<tr class="odd">
+<td class="zentriert no-border-rechts"><a title="Iran" href="/iran/startseite/verein/3582"><img src="https://tmssl.akamaized.net//images/flagge/tiny/71.png?lm=1520611569" title="Iran" alt="Iran" class="flaggenrahmen" /></a></td><td class="links no-border-links hauptlink"><a title="Iran" href="/iran/startseite/verein/3582">Iran</a></td><td class="zentriert">30</td><td class="zentriert">29,3</td><td class="zentriert">7</td><td class="zentriert">26,7 %</td><td class="rechts">35,65 Mio. €</td><td class="rechts">1,19 Mio. €</td></tr>
+<tr class="even">
+<td class="zentriert no-border-rechts"><a title="Saudi-Arabien" href="/saudi-arabien/startseite/verein/3807"><img src="https://tmssl.akamaized.net//images/flagge/tiny/146.png?lm=1520611569" title="Saudi-Arabien" alt="Saudi-Arabien" class="flaggenrahmen" /></a></td><td class="links no-border-links hauptlink"><a title="Saudi-Arabien" href="/saudi-arabien/startseite/verein/3807">Saudi-Arabien</a></td><td class="zentriert">23</td><td class="zentriert">28,0</td><td class="zentriert">7</td><td class="zentriert">8,7 %</td><td class="rechts">27,63 Mio. €</td><td class="rechts">1,20 Mio. €</td></tr>
+<tr class="odd">
+<td class="zentriert no-border-rechts"><a title="Costa Rica" href="/costa-rica/startseite/verein/8497"><img src="https://tmssl.akamaized.net//images/flagge/tiny/36.png?lm=1520611569" title="Costa Rica" alt="Costa Rica" class="flaggenrahmen" /></a></td><td class="links no-border-links hauptlink"><a title="Costa Rica" href="/costa-rica/startseite/verein/8497">Costa Rica</a></td><td class="zentriert">23</td><td class="zentriert">24,9</td><td class="zentriert">6</td><td class="zentriert">47,8 %</td><td class="rechts">18,60 Mio. €</td><td class="rechts">809 Tsd. €</td></tr>
+<tr class="even">
+<td class="zentriert no-border-rechts"><a title="Katar" href="/katar/startseite/verein/14162"><img src="https://tmssl.akamaized.net//images/flagge/tiny/137.png?lm=1520611569" title="Katar" alt="Katar" class="flaggenrahmen" /></a></td><td class="links no-border-links hauptlink"><a title="Katar" href="/katar/startseite/verein/14162">Katar</a></td><td class="zentriert">25</td><td class="zentriert">27,9</td><td class="zentriert">2</td><td class="zentriert">4,0 %</td><td class="rechts">17,93 Mio. €</td><td class="rechts">717 Tsd. €</td></tr>
+</tbody>
+</table>
+<div class="keys" style="display:none" title="/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021"><span>3299</span><span>3377</span><span>3375</span><span>3300</span><span>3439</span><span>3379</span><span>3437</span><span>3382</span><span>3262</span><span>3499</span><span>3575</span><span>3436</span><span>5750</span><span>3449</span><span>3556</span><span>3505</span><span>3384</span><span>3438</span><span>3441</span><span>3435</span><span>3442</span><span>3864</span><span>3434</span><span>3589</span><span>3510</span><span>6303</span><span>3670</span><span>3433</span><span>3582</span><span>3807</span><span>8497</span><span>14162</span></div>
+</div>                </div>
+            </div>
+                            <div class="box">
+                <h2 class="content-box-headline">
+                    Nicht qualifizierte Teams                </h2>
+                <div class="responsive-table">
+                    <div id="yw2" class="grid-view">
+<div class="summary"></div>
+<table class="items">
+<thead>
+<tr>
+<th class="hide" id="yw2_c0">wappen</th><th class="links" colspan="2" id="yw2_c1">Verein</th><th class="zentriert" id="yw2_c2"><a class="sort-link" href="/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021/sort/anzahl_spieler.desc">Kader</a></th><th class="zentriert" id="yw2_c3"><a class="sort-link" href="/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021/sort/alter_durchschnitt.desc">&oslash-Alter</a></th><th class="zentriert" id="yw2_c4"><a class="sort-link" href="/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021/sort/teilnahmen.desc">WM-Teilnahmen</a></th><th class="zentriert" id="yw2_c5">Legionäre</th><th class="rechts" id="yw2_c6"><a class="sort-link" href="/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021/sort/marktwert_gesamt.desc">Marktwert</a></th><th class="rechts" id="yw2_c7"><a class="sort-link" href="/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021/sort/marktwert_schnitt.desc">&oslash-Marktwert</a></th></tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td class="zentriert no-border-rechts"><a title="Italien" href="/italien/startseite/verein/3376"><img src="https://tmssl.akamaized.net//images/flagge/tiny/75.png?lm=1520611569" title="Italien" alt="Italien" class="flaggenrahmen" /></a></td><td class="links no-border-links hauptlink"><a title="Italien" href="/italien/startseite/verein/3376">Italien</a></td><td class="zentriert">28</td><td class="zentriert">26,7</td><td class="zentriert">18</td><td class="zentriert">17,9 %</td><td class="rechts">833,50 Mio. €</td><td class="rechts">29,77 Mio. €</td></tr>
+<tr class="even">
+<td class="zentriert no-border-rechts"><a title="Türkei" href="/turkei/startseite/verein/3381"><img src="https://tmssl.akamaized.net//images/flagge/tiny/174.png?lm=1520611569" title="Türkei" alt="Türkei" class="flaggenrahmen" /></a></td><td class="links no-border-links hauptlink"><a title="Türkei" href="/turkei/startseite/verein/3381">Türkei</a></td><td class="zentriert">35</td><td class="zentriert">27,1</td><td class="zentriert">3</td><td class="zentriert">45,7 %</td><td class="rechts">522,70 Mio. €</td><td class="rechts">14,93 Mio. €</td></tr>
+<tr class="odd">
+<td class="zentriert no-border-rechts"><a title="Elfenbeinküste" href="/elfenbeinkuste/startseite/verein/3591"><img src="https://tmssl.akamaized.net//images/flagge/tiny/38.png?lm=1520611569" title="Elfenbeinküste" alt="Elfenbeinküste" class="flaggenrahmen" /></a></td><td class="links no-border-links hauptlink"><a title="Elfenbeinküste" href="/elfenbeinkuste/startseite/verein/3591">Elfenbeinküste</a></td><td class="zentriert">26</td><td class="zentriert">25,6</td><td class="zentriert">4</td><td class="zentriert">100,0 %</td><td class="rechts">514,90 Mio. €</td><td class="rechts">19,80 Mio. €</td></tr>
+<tr class="even">
+<td class="zentriert no-border-rechts"><a title="Norwegen" href="/norwegen/startseite/verein/3440"><img src="https://tmssl.akamaized.net//images/flagge/tiny/125.png?lm=1520611569" title="Norwegen" alt="Norwegen" class="flaggenrahmen" /></a></td><td class="links no-border-links hauptlink"><a title="Norwegen" href="/norwegen/startseite/verein/3440">Norwegen</a></td><td class="zentriert">24</td><td class="zentriert">27,1</td><td class="zentriert">4</td><td class="zentriert">75,0 %</td><td class="rechts">504,00 Mio. €</td><td class="rechts">21,00 Mio. €</td></tr>
+<tr class="odd">
+<td class="zentriert no-border-rechts"><a title="Schweden" href="/schweden/startseite/verein/3557"><img src="https://tmssl.akamaized.net//images/flagge/tiny/147.png?lm=1520611569" title="Schweden" alt="Schweden" class="flaggenrahmen" /></a></td><td class="links no-border-links hauptlink"><a title="Schweden" href="/schweden/startseite/verein/3557">Schweden</a></td><td class="zentriert">26</td><td class="zentriert">27,4</td><td class="zentriert">13</td><td class="zentriert">88,5 %</td><td class="rechts">435,38 Mio. €</td><td class="rechts">16,75 Mio. €</td></tr>
+<tr class="even">
+<td class="zentriert no-border-rechts"><a title="Griechenland" href="/griechenland/startseite/verein/3378"><img src="https://tmssl.akamaized.net//images/flagge/tiny/56.png?lm=1520611569" title="Griechenland" alt="Griechenland" class="flaggenrahmen" /></a></td><td class="links no-border-links hauptlink"><a title="Griechenland" href="/griechenland/startseite/verein/3378">Griechenland</a></td><td class="zentriert">26</td><td class="zentriert">25,9</td><td class="zentriert">3</td><td class="zentriert">65,4 %</td><td class="rechts">315,60 Mio. €</td><td class="rechts">12,14 Mio. €</td></tr>
+<tr class="odd">
+<td class="zentriert no-border-rechts"><a title="Kolumbien" href="/kolumbien/startseite/verein/3816"><img src="https://tmssl.akamaized.net//images/flagge/tiny/83.png?lm=1520611569" title="Kolumbien" alt="Kolumbien" class="flaggenrahmen" /></a></td><td class="links no-border-links hauptlink"><a title="Kolumbien" href="/kolumbien/startseite/verein/3816">Kolumbien</a></td><td class="zentriert">26</td><td class="zentriert">29,8</td><td class="zentriert">7</td><td class="zentriert">96,2 %</td><td class="rechts">300,45 Mio. €</td><td class="rechts">11,56 Mio. €</td></tr>
+<tr class="even">
+<td class="zentriert no-border-rechts"><a title="Ukraine" href="/ukraine/startseite/verein/3699"><img src="https://tmssl.akamaized.net//images/flagge/tiny/177.png?lm=1520611569" title="Ukraine" alt="Ukraine" class="flaggenrahmen" /></a></td><td class="links no-border-links hauptlink"><a title="Ukraine" href="/ukraine/startseite/verein/3699">Ukraine</a></td><td class="zentriert">26</td><td class="zentriert">26,6</td><td class="zentriert">1</td><td class="zentriert">46,2 %</td><td class="rechts">288,20 Mio. €</td><td class="rechts">11,08 Mio. €</td></tr>
+<tr class="odd">
+<td class="zentriert no-border-rechts"><a title="Österreich" href="/osterreich/startseite/verein/3383"><img src="https://tmssl.akamaized.net//images/flagge/tiny/127.png?lm=1520611569" title="Österreich" alt="Österreich" class="flaggenrahmen" /></a></td><td class="links no-border-links hauptlink"><a title="Österreich" href="/osterreich/startseite/verein/3383">Österreich</a></td><td class="zentriert">26</td><td class="zentriert">28,5</td><td class="zentriert">9</td><td class="zentriert">88,5 %</td><td class="rechts">258,30 Mio. €</td><td class="rechts">9,93 Mio. €</td></tr>
+<tr class="even">
+<td class="zentriert no-border-rechts"><a title="Algerien" href="/algerien/startseite/verein/3614"><img src="https://tmssl.akamaized.net//images/flagge/tiny/4.png?lm=1520611569" title="Algerien" alt="Algerien" class="flaggenrahmen" /></a></td><td class="links no-border-links hauptlink"><a title="Algerien" href="/algerien/startseite/verein/3614">Algerien</a></td><td class="zentriert">26</td><td class="zentriert">26,0</td><td class="zentriert">5</td><td class="zentriert">92,3 %</td><td class="rechts">227,85 Mio. €</td><td class="rechts">8,76 Mio. €</td></tr>
+<tr class="odd">
+<td class="zentriert no-border-rechts"><a title="Russland" href="/russland/startseite/verein/3448"><img src="https://tmssl.akamaized.net//images/flagge/tiny/141.png?lm=1520611569" title="Russland" alt="Russland" class="flaggenrahmen" /></a></td><td class="links no-border-links hauptlink"><a title="Russland" href="/russland/startseite/verein/3448">Russland</a></td><td class="zentriert">32</td><td class="zentriert">26,2</td><td class="zentriert">4</td><td class="zentriert">9,4 %</td><td class="rechts">215,75 Mio. €</td><td class="rechts">6,74 Mio. €</td></tr>
+<tr class="even">
+<td class="zentriert no-border-rechts"><a title="Ungarn" href="/ungarn/startseite/verein/3468"><img src="https://tmssl.akamaized.net//images/flagge/tiny/178.png?lm=1521635893" title="Ungarn" alt="Ungarn" class="flaggenrahmen" /></a></td><td class="links no-border-links hauptlink"><a title="Ungarn" href="/ungarn/startseite/verein/3468">Ungarn</a></td><td class="zentriert">29</td><td class="zentriert">25,6</td><td class="zentriert">9</td><td class="zentriert">58,6 %</td><td class="rechts">211,40 Mio. €</td><td class="rechts">7,29 Mio. €</td></tr>
+<tr class="odd">
+<td class="zentriert no-border-rechts"><a title="Schottland" href="/schottland/startseite/verein/3380"><img src="https://tmssl.akamaized.net//images/flagge/tiny/190.png?lm=1520611569" title="Schottland" alt="Schottland" class="flaggenrahmen" /></a></td><td class="links no-border-links hauptlink"><a title="Schottland" href="/schottland/startseite/verein/3380">Schottland</a></td><td class="zentriert">26</td><td class="zentriert">29,4</td><td class="zentriert">9</td><td class="zentriert">69,2 %</td><td class="rechts">207,83 Mio. €</td><td class="rechts">7,99 Mio. €</td></tr>
+<tr class="even">
+<td class="zentriert no-border-rechts"><a title="Georgien" href="/georgien/startseite/verein/3669"><img src="https://tmssl.akamaized.net//images/flagge/tiny/53.png?lm=1520611569" title="Georgien" alt="Georgien" class="flaggenrahmen" /></a></td><td class="links no-border-links hauptlink"><a title="Georgien" href="/georgien/startseite/verein/3669">Georgien</a></td><td class="zentriert">25</td><td class="zentriert">26,7</td><td class="zentriert">0</td><td class="zentriert">92,0 %</td><td class="rechts">199,05 Mio. €</td><td class="rechts">7,96 Mio. €</td></tr>
+<tr class="odd">
+<td class="zentriert no-border-rechts"><a title="Tschechien" href="/tschechien/startseite/verein/3445"><img src="https://tmssl.akamaized.net//images/flagge/tiny/172.png?lm=1520611569" title="Tschechien" alt="Tschechien" class="flaggenrahmen" /></a></td><td class="links no-border-links hauptlink"><a title="Tschechien" href="/tschechien/startseite/verein/3445">Tschechien</a></td><td class="zentriert">24</td><td class="zentriert">28,2</td><td class="zentriert">2</td><td class="zentriert">41,7 %</td><td class="rechts">179,08 Mio. €</td><td class="rechts">7,46 Mio. €</td></tr>
+<tr class="even">
+<td class="zentriert no-border-rechts"><a title="Nigeria" href="/nigeria/startseite/verein/3444"><img src="https://tmssl.akamaized.net//images/flagge/tiny/124.png?lm=1520611569" title="Nigeria" alt="Nigeria" class="flaggenrahmen" /></a></td><td class="links no-border-links hauptlink"><a title="Nigeria" href="/nigeria/startseite/verein/3444">Nigeria</a></td><td class="zentriert">32</td><td class="zentriert">25,4</td><td class="zentriert">6</td><td class="zentriert">78,1 %</td><td class="rechts">159,70 Mio. €</td><td class="rechts">4,99 Mio. €</td></tr>
+<tr class="odd">
+<td class="zentriert no-border-rechts"><a title="Demokratische Republik Kongo" href="/demokratische-republik-kongo/startseite/verein/3854"><img src="https://tmssl.akamaized.net//images/flagge/tiny/193.png?lm=1520611569" title="Demokratische Republik Kongo" alt="Demokratische Republik Kongo" class="flaggenrahmen" /></a></td><td class="links no-border-links hauptlink"><a title="Demokratische Republik Kongo" href="/demokratische-republik-kongo/startseite/verein/3854">Demokratische Republik Kongo</a></td><td class="zentriert">26</td><td class="zentriert">29,0</td><td class="zentriert">1</td><td class="zentriert">100,0 %</td><td class="rechts">149,75 Mio. €</td><td class="rechts">5,76 Mio. €</td></tr>
+<tr class="even">
+<td class="zentriert no-border-rechts"><a title="Irland" href="/irland/startseite/verein/3509"><img src="https://tmssl.akamaized.net//images/flagge/tiny/72.png?lm=1520611569" title="Irland" alt="Irland" class="flaggenrahmen" /></a></td><td class="links no-border-links hauptlink"><a title="Irland" href="/irland/startseite/verein/3509">Irland</a></td><td class="zentriert">18</td><td class="zentriert">26,3</td><td class="zentriert">3</td><td class="zentriert">100,0 %</td><td class="rechts">144,08 Mio. €</td><td class="rechts">8,00 Mio. €</td></tr>
+<tr class="odd">
+<td class="zentriert no-border-rechts"><a title="Slowenien" href="/slowenien/startseite/verein/3588"><img src="https://tmssl.akamaized.net//images/flagge/tiny/155.png?lm=1520611569" title="Slowenien" alt="Slowenien" class="flaggenrahmen" /></a></td><td class="links no-border-links hauptlink"><a title="Slowenien" href="/slowenien/startseite/verein/3588">Slowenien</a></td><td class="zentriert">25</td><td class="zentriert">27,0</td><td class="zentriert">2</td><td class="zentriert">80,0 %</td><td class="rechts">143,85 Mio. €</td><td class="rechts">5,75 Mio. €</td></tr>
+<tr class="even">
+<td class="zentriert no-border-rechts"><a title="Ägypten" href="/agypten/startseite/verein/3672"><img src="https://tmssl.akamaized.net//images/flagge/tiny/2.png?lm=1520611569" title="Ägypten" alt="Ägypten" class="flaggenrahmen" /></a></td><td class="links no-border-links hauptlink"><a title="Ägypten" href="/agypten/startseite/verein/3672">Ägypten</a></td><td class="zentriert">27</td><td class="zentriert">28,8</td><td class="zentriert">4</td><td class="zentriert">33,3 %</td><td class="rechts">136,23 Mio. €</td><td class="rechts">5,05 Mio. €</td></tr>
+<tr class="odd">
+<td class="zentriert no-border-rechts"><a title="Paraguay" href="/paraguay/startseite/verein/3581"><img src="https://tmssl.akamaized.net//images/flagge/tiny/132.png?lm=1520611569" title="Paraguay" alt="Paraguay" class="flaggenrahmen" /></a></td><td class="links no-border-links hauptlink"><a title="Paraguay" href="/paraguay/startseite/verein/3581">Paraguay</a></td><td class="zentriert">25</td><td class="zentriert">28,9</td><td class="zentriert">10</td><td class="zentriert">84,0 %</td><td class="rechts">134,45 Mio. €</td><td class="rechts">5,38 Mio. €</td></tr>
+<tr class="even">
+<td class="zentriert no-border-rechts"><a title="Bosnien-Herzegowina" href="/bosnien-herzegowina/startseite/verein/3446"><img src="https://tmssl.akamaized.net//images/flagge/tiny/24.png?lm=1569523290" title="Bosnien-Herzegowina" alt="Bosnien-Herzegowina" class="flaggenrahmen" /></a></td><td class="links no-border-links hauptlink"><a title="Bosnien-Herzegowina" href="/bosnien-herzegowina/startseite/verein/3446">Bosnien-Herzegowina</a></td><td class="zentriert">26</td><td class="zentriert">26,8</td><td class="zentriert">2</td><td class="zentriert">100,0 %</td><td class="rechts">133,40 Mio. €</td><td class="rechts">5,13 Mio. €</td></tr>
+<tr class="odd">
+<td class="zentriert no-border-rechts"><a title="Slowakei" href="/slowakei/startseite/verein/3503"><img src="https://tmssl.akamaized.net//images/flagge/tiny/154.png?lm=1520611569" title="Slowakei" alt="Slowakei" class="flaggenrahmen" /></a></td><td class="links no-border-links hauptlink"><a title="Slowakei" href="/slowakei/startseite/verein/3503">Slowakei</a></td><td class="zentriert">30</td><td class="zentriert">27,6</td><td class="zentriert">1</td><td class="zentriert">73,3 %</td><td class="rechts">123,35 Mio. €</td><td class="rechts">4,11 Mio. €</td></tr>
+<tr class="even">
+<td class="zentriert no-border-rechts"><a title="Kosovo" href="/kosovo/startseite/verein/53982"><img src="https://tmssl.akamaized.net//images/flagge/tiny/244.png?lm=1520611569" title="Kosovo" alt="Kosovo" class="flaggenrahmen" /></a></td><td class="links no-border-links hauptlink"><a title="Kosovo" href="/kosovo/startseite/verein/53982">Kosovo</a></td><td class="zentriert">25</td><td class="zentriert">27,7</td><td class="zentriert">0</td><td class="zentriert">96,0 %</td><td class="rechts">114,28 Mio. €</td><td class="rechts">4,57 Mio. €</td></tr>
+<tr class="odd">
+<td class="zentriert no-border-rechts"><a title="Burkina Faso" href="/burkina-faso/startseite/verein/5872"><img src="https://tmssl.akamaized.net//images/flagge/tiny/29.png?lm=1520611569" title="Burkina Faso" alt="Burkina Faso" class="flaggenrahmen" /></a></td><td class="links no-border-links hauptlink"><a title="Burkina Faso" href="/burkina-faso/startseite/verein/5872">Burkina Faso</a></td><td class="zentriert">25</td><td class="zentriert">25,0</td><td class="zentriert">0</td><td class="zentriert">96,0 %</td><td class="rechts">103,30 Mio. €</td><td class="rechts">4,13 Mio. €</td></tr>
+</tbody>
+</table>
+<div class="pager"><ul class="tm-pagination">
+
+<li class="tm-pagination__list-item tm-pagination__list-item--active"><a href="/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021" title="Seite 1" class="tm-pagination__link">1</a></li>
+<li class="tm-pagination__list-item"><a href="/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021/page/2" title="Seite 2" class="tm-pagination__link">2</a></li>
+<li class="tm-pagination__list-item"><a href="/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021/page/3" title="Seite 3" class="tm-pagination__link">3</a></li>
+<li class="tm-pagination__list-item"><a href="/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021/page/4" title="Seite 4" class="tm-pagination__link">4</a></li>
+<li class="tm-pagination__list-item"><a href="/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021/page/5" title="Seite 5" class="tm-pagination__link">5</a></li>
+<li class="tm-pagination__list-item"><a href="/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021/page/6" title="Seite 6" class="tm-pagination__link">6</a></li>
+<li class="tm-pagination__list-item"><a href="/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021/page/7" title="Seite 7" class="tm-pagination__link">7</a></li>
+<li class="tm-pagination__list-item"><a href="/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021/page/8" title="Seite 8" class="tm-pagination__link">8</a></li>
+<li class="tm-pagination__list-item tm-pagination__list-item--icon-next-page"><a href="/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021/page/2" title="Zur naechsten Seite" class="tm-pagination__link">&nbsp;&nbsp;</a></li>
+<li class="tm-pagination__list-item tm-pagination__list-item--icon-last-page"><a href="/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021/page/8" title="Zur letzten Seite (Seite 8)" class="tm-pagination__link">&nbsp;&nbsp;</a></li></ul></div><div class="keys" style="display:none" title="/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021"><span>3376</span><span>3381</span><span>3591</span><span>3440</span><span>3557</span><span>3378</span><span>3816</span><span>3699</span><span>3383</span><span>3614</span><span>3448</span><span>3468</span><span>3380</span><span>3669</span><span>3445</span><span>3444</span><span>3854</span><span>3509</span><span>3588</span><span>3672</span><span>3581</span><span>3446</span><span>3503</span><span>53982</span><span>5872</span></div>
+</div>                </div>
+            </div>
+            </div>
+    <div class="large-4 columns">
+              <tm-relevant-news type="competition" id="2327"></tm-relevant-news>
+            </div>
+</div>
+
+<div class="werbung ad-placement-note werbung-fullsize_contentad" data-ad-placement-note="Werbung">
+  <div id="fullsize_contentad"></div>
+</div>
+
+
+        </main>
+        <footer class="tm-footer">
+               <section class="tm-footer__section-quick-links">
+        <strong class="tm-footer__headline tm-footer__headline--large">
+            Schnellzugriff        </strong>
+        <div class="tm-footer__link-wrapper">
+            <a href="/spieler-statistik/wertvollstespieler/marktwertetop"
+               onclick="tmEvent('footer', 'quick_links', '/spieler-statistik/wertvollstespieler')"
+               class="tm-footer__link tm-footer__link--arrow"
+            >
+                Wertvollste Spieler der Welt            </a>
+            <a href="/statistik/neuestetransfers"
+                onclick="tmEvent('footer', 'quick_links', '/statistik/neuestetransfers')"
+               class="tm-footer__link tm-footer__link--arrow"
+            >
+                Neueste Transfers            </a>
+            <a href="/geruechte/aktuellegeruechte/statistik"
+                onclick="tmEvent('footer', 'quick_links', '/statistik/aktuellegeruechte')"
+               class="tm-footer__link tm-footer__link--arrow"
+            >
+                Aktuelle Gerüchte            </a>
+            <a href="/spieler-statistik/marktwertaenderungen/marktwertetop"
+                onclick="tmEvent('footer', 'quick_links', '/spieler-statistik/marktwertaenderungen/marktwertetop')"
+               class="tm-footer__link tm-footer__link--arrow"
+            >
+                Aktuelle Marktwert-Updates            </a>
+            <a href="/statistik/weltrangliste"
+                onclick="tmEvent('footer', 'quick_links', '/statistik/weltrangliste')"
+               class="tm-footer__link tm-footer__link--arrow"
+            >
+                FIFA-Weltrangliste            </a>
+                        <a href="/sportwetten/wettanbieter/"
+                onclick="tmEvent('footer', 'quick_links', '/sportwetten/wettanbieter/')"
+               class="tm-footer__link tm-footer__link--arrow"
+            >
+                Wettanbieter Deutschland            </a>
+                    </div>
+    </section>
+                <section class="tm-footer__section-involved">
+            <strong class="tm-footer__headline tm-footer__headline--large">
+                Mitmachen            </strong>
+            <div class="tm-footer__link-wrapper">
+                <a href="/intern/paten"
+                    onclick="tmEvent('footer', 'be_involved', 'mods_data_scouts')"
+                   class="tm-footer__link tm-footer__link--arrow"
+                >
+                    Paten und Datenpfleger                </a>
+                <a href="/profil/bewerbung"
+                    onclick="tmEvent('footer', 'be_involved', 'apply_mod_datascout')"
+                   class="tm-footer__link tm-footer__link--arrow"
+                >
+                    Als Pate oder Datenpfleger bewerben                </a>
+                <a href="/intern/elfGebote"
+                    onclick="tmEvent('footer', 'be_involved', '11_commandments')"
+                   class="tm-footer__link tm-footer__link--arrow"
+                >
+                    11 Gebote                </a>
+                <a href="/intern/fehlermelden"
+                    onclick="tmEvent('footer', 'be_involved', 'found_mistake')"
+                   class="tm-footer__link tm-footer__link--arrow"
+                >
+                    Fehler gefunden?                </a>
+            </div>
+        </section>
+        <section class="tm-footer__section-career">
+            <strong class="tm-footer__headline tm-footer__headline--large">
+                Karriere            </strong>
+            <div class="tm-footer__link-wrapper">
+                                    <a href="/jobs"
+                       class="tm-footer__link tm-footer__link--arrow"
+                       onclick="tmEvent('footer', 'career', 'open_positions')"
+                    >
+                        Offene Stellen                    </a>
+                                <a href="/intern/tmteam"
+                   class="tm-footer__link tm-footer__link--arrow"
+                   onclick="tmEvent('footer', 'career', 'contact')"
+                >
+                    Kontakt                </a>
+            </div>
+        </section>
+        <section class="tm-footer__section-about">
+            <strong class="tm-footer__headline tm-footer__headline--large">
+                Über uns            </strong>
+            <div class="tm-footer__link-wrapper">
+                <a href="/intern/tmteam"
+                   onclick="tmEvent('footer', 'about_us', 'tm_team')"
+                   class="tm-footer__link tm-footer__link--arrow"
+                >
+                    Das TM-Team                </a>
+                <a href="/intern/faq"
+                   onclick="tmEvent('footer', 'about_us', 'faq')"
+                   class="tm-footer__link tm-footer__link--arrow"
+                >
+                    FAQ                </a>
+            </div>
+        </section>
+            <section class="tm-footer__section-social">
+        <strong class="tm-footer__headline
+            ">
+            Social Media        </strong>
+        <div class="tm-footer__social-wrapper">
+                        <a href="https://www.instagram.com/transfermarkt.de/"
+                   target="_blank"
+                   class="tm-footer__link-social"
+                   onclick="tmEvent('footer', 'social_media', 'instagram')"
+                >
+                    <img src="https://tmsi.akamaized.net/icons/socialMedia/instaRebrush.svg"
+                         alt="instagram"
+                         width="28"
+                         height="28"
+                         class="tm-footer__icon-social"
+                    >
+                </a>
+                <a href="https://www.facebook.com/transfermarkt"
+                   target="_blank"
+                   class="tm-footer__link-social"
+                   onclick="tmEvent('footer', 'social_media', 'facebook')">
+                    <img src="https://tmsi.akamaized.net/icons/socialMedia/fbRebrush.svg"
+                         alt="facebook"
+                         width="25"
+                         height="25"
+                         class="tm-footer__icon-social"
+                    >
+                </a>
+                <a href="https://whatsapp.com/channel/0029Va1GC0s8qIzoRaZeyJ0V"
+                   target="_blank"
+                   class="tm-footer__link-social"
+                   onclick="tmEvent('footer', 'social_media', 'whatsapp')"
+                >
+                    <img src="https://tmsi.akamaized.net/icons/socialMedia/whatsappRebrush.svg"
+                         alt="whatsapp"
+                         width="28"
+                         height="28"
+                         class="tm-footer__icon-social"
+                    >
+                </a>
+                <a href="https://x.com/Transfermarkt"
+                   target="_blank"
+                   class="tm-footer__link-social"
+                   onclick="tmEvent('footer', 'social_media', 'x')">
+                    <img src="https://tmsi.akamaized.net/icons/socialMedia/twitter_rebrush.svg"
+                         alt="twitter"
+                         width="28"
+                         height="28"
+                         class="tm-footer__icon-social"
+                    >
+                </a>
+                <a href="https://www.threads.net/@transfermarkt.de"
+                   target="_blank"
+                   class="tm-footer__link-social"
+                   onclick="tmEvent('footer', 'social_media', 'threads')"
+                >
+                    <img src="https://tmsi.akamaized.net/icons/socialMedia/threadsRebrush.svg"
+                         alt="threads"
+                         width="28"
+                         height="28"
+                         class="tm-footer__icon-social"
+                    >
+                </a>
+                <a href="https://www.tiktok.com/@transfermarkt.de"
+                   target="_blank"
+                   class="tm-footer__link-social"
+                   onclick="tmEvent('footer', 'social_media', 'tiktok')"
+                >
+                    <img src="https://tmsi.akamaized.net/icons/socialMedia/tiktokRebrush.svg"
+                         alt="tiktok"
+                         width="28"
+                         height="28"
+                         class="tm-footer__icon-social"
+                    >
+                </a>
+                <a href="https://www.youtube.com/user/transfermarkt"
+                   target="_blank"
+                   class="tm-footer__link-social"
+                   onclick="tmEvent('footer', 'social_media', 'youtube')"
+                >
+                    <img src="https://tmsi.akamaized.net/icons/socialMedia/RebrushYoutube.svg"
+                         alt="youtube"
+                         width="28"
+                         height="28"
+                         class="tm-footer__icon-social header__icon--youtube"
+                    >
+                </a>
+                <a href="https://www.twitch.tv/transfermarkt"
+                   target="_blank"
+                   class="tm-footer__link-social"
+                   onclick="tmEvent('footer', 'social_media', 'twitch')"
+                >
+                    <img src="https://tmsi.akamaized.net/icons/socialMedia/twitchRebrush.svg"
+                         alt="youtube"
+                         width="28"
+                         height="28"
+                         class="tm-footer__icon-social"
+                    >
+                </a>
+                <a href="https://www.transfermarkt.de/intern/rssguide"
+                   target="_blank"
+                   class="tm-footer__link-social"
+                   onclick="tmEvent('footer', 'social_media', 'rss')"
+                >
+                    <img src="https://tmsi.akamaized.net/icons/socialMedia/RebrushRss.svg"
+                         alt="rss"
+                         width="28"
+                         height="28"
+                         class="tm-footer__icon-social"
+                    >
+                </a>
+                <a href="https://www.linkedin.com/company/transfermarkt-gmbh-&-co-kg"
+                   target="_blank"
+                   class="tm-footer__link-social"
+                   onclick="tmEvent('footer', 'social_media', 'linkedIn')"
+                >
+                    <img src="https://tmsi.akamaized.net/icons/socialMedia/linkedInRebrush.svg"
+                         alt="linkedIn"
+                         width="28"
+                         height="28"
+                         class="tm-footer__icon-social"
+                    >
+                </a>
+                        </div>
+    </section>
+            <section class="tm-footer__section-app-links">
+            <strong class="tm-footer__headline  ">
+                Jetzt die Transfermarkt-App herunterladen            </strong>
+            <div class="tm-footer__social-wrapper">
+                <a href="https://itunes.apple.com/de/app/transfermarkt/id1239455154?mt=8"
+                   target="_blank"
+                   onclick="tmEvent('footer', 'app', 'download_app')"
+                >
+                    <img src="/images/apps/Download_on_the_App_Store_Badge_DE_Source_135x40.svg"
+                         class="store-logo"
+                         id="app-store-logo"
+                         alt="Apple-Store"
+                         height="33"
+                         width="107"
+                    >
+                </a>
+                <a href="https://play.google.com/store/apps/details?id=de.transfermarkt.v2"
+                   target="_blank"
+                   onclick="tmEvent('footer', 'app', 'download_app')"
+                >
+                    <img src="/images/apps/google-play-badgeEEE.svg"
+                         class="store-logo"
+                         id="google-store-logo"
+                         alt="Play-Store"
+                         height="33"
+                         width="107"
+                    >
+                </a>
+            </div>
+        </section>
+                </footer>
+                <div id="menue_overlay"></div>
+    </div>
+    <section class="tm-footer__mobile tm-footer__transfermarkt-info">
+        <section class="tm-footer__section-desktop-width">
+                            <section class="tm-footer__section-company-links">
+                    <span class="tm-footer__headline tm-footer__headline--medium">
+                        Weitere Transfermarkt-Projekte                    </span>
+                    <div class="tm-footer__project-wrapper">
+                        <a href="/wahretabelle"
+                           onclick="tmEvent('footer', 'projects', 'wahretabelle')"
+                           class="tm-footer__link"
+                        >
+                            Wahretabelle                        </a>
+                        <a href="https://www.soccerdonna.de/"
+                           onclick="tmEvent('footer', 'projects', 'soccerdonna')"
+                           class="tm-footer__link"
+                        >
+                            Soccerdonna.de                        </a>
+                        <a href="https://scoutastic.com/de/"
+                           onclick="tmEvent('footer', 'projects', 'scoutastic')"
+                           class="tm-footer__link"
+                        >
+                            Scoutastic.com                        </a>
+                    </div>
+                </section>
+                        <section class="tm-footer__section-company-infos">
+                <span class="tm-footer__headline tm-footer__headline--medium">&copy; Transfermarkt <span id="currentYear">2026</span></span>
+                <div class="tm-footer__company-wrapper">
+                    <a
+                    href="/intern/impressum"
+                    class="tm-footer__link tm-footer__link--blue"
+                    onclick="tmEvent('footer', 'officials', 'impressum')"
+                    >
+                        Impressum                    </a>
+                    <a
+                        href="/intern/web/datenschutz"
+                        class="tm-footer__link tm-footer__link--blue"
+                        onclick="tmEvent('footer', 'officials', 'data_protection')"
+                        >
+                        Datenschutz                    </a>
+                    <a
+                        href="javascript:void(0)"
+                        class="cmp-link tm-footer__link tm-footer__link--blue"
+                        onclick="tmEvent('footer', 'officials', 'privacy')"
+                    >
+                        Privatsphäre                    </a>
+                    <a
+                        href="javascript:void(0)"
+                        class="revoke-tracking tm-footer__link tm-footer__link--blue"
+                        onclick="tmEvent('footer', 'officials', 'tracking_revocation')"
+                    >
+                        Widerruf Tracking & Cookies                    </a>
+                    <a
+                        href="/intern/anb"
+                        class="tm-footer__link tm-footer__link--blue"
+                        onclick="tmEvent('footer', 'officials', 'general_conduct_of_use')"
+                        >
+                        Nutzungsbedingungen                    </a>
+                                                <a
+                                href="https://www.stroeer.de/planen-buchen/onlinewerbung/transfermarktde/"
+                                target="_blank"
+                                class="tm-footer__link tm-footer__link--blue"
+                                onclick="tmEvent('footer', 'officials', 'media')"
+                                >
+                                Media                            </a>
+                                    </div>
+            </section>
+        </section>
+    </section>
+    <script type="text/javascript">
+	if(typeof(adet) == "boolean" && adet == false){
+		img_src="/static/singlepictures/jk99hhfsdh209nbnkjldgh90sghfsdlk";
+	} else {
+		img_src="/static/singlepictures/jku90whjlkjbwbta1g4b8h89fh8sgh8d";
+	}
+	var elem = document.createElement("img");
+	document.body.appendChild(elem);
+	elem.src = img_src;
+</script>
+
+            <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var cnt = document.querySelectorAll('div.large-4.columns').length;
+                if (cnt == 1) {
+                    var sidebarDiv = document.querySelector('div.large-4.columns');
+                    if (sidebarDiv !== null) {
+                        var sidebar = document.getElementById('werbung_recommender_sidebar_wrapper');
+                        sidebarDiv.appendChild(sidebar);
+                        sidebar.style.display = 'block';
+                    }
+                }
+            });
+        </script>
+        <div id="werbung_recommender_sidebar_wrapper" style="display: none;">
+            <div 
+    id="recommender_sidebar" 
+    class="box"
+    >
+    <div class="OUTBRAIN" data-src="https://www.transfermarkt.de/weltmeisterschaft-2022/teilnehmer/pokalwettbewerb/FIWC/saison_id/2021" data-widget-id="SB_1" data-ob-template="DE_Transfermarkt.de"></div>
+<tm-consent 
+    no-checkbox 
+    type="outbrain" 
+    embed="PHNjcmlwdCB0eXBlPSJ0ZXh0L2phdmFzY3JpcHQiIGFzeW5jPSJhc3luYyIgc3JjPSIvL3dpZGdldHMub3V0YnJhaW4uY29tL291dGJyYWluLmpzIj48L3NjcmlwdD4=">
+</tm-consent>
+</div>
+        </div>
+    <tm-consent type="adition" no-checkbox embed="PHNjcmlwdCBzcmM9Imh0dHBzOi8vY3JlYXRpdmUtY2RuLm9kZHNzZXJ2ZS5jb20vbG9hZGVyLmpzP3B1Ymxpc2hlcj10bSIgYXN5bmM9ImFzeW5jIj48L3NjcmlwdD4="></tm-consent><tm-consent type='adrenalead' no-checkbox embed='PHNjcmlwdCB0eXBlPSd0ZXh0L2phdmFzY3JpcHQnPgogICAgICAgICAgICB3aW5kb3cuX25BZHpxPXdpbmRvdy5fbkFkenF8fFtdOyhmdW5jdGlvbigpewogICAgICAgICAgICB3aW5kb3cuX25BZHpxLnB1c2goWydzZXRJZHMnLCc4ZTFjODdiZDk4MGJiMDZkJ10pOwogICAgICAgICAgICB2YXIgZT0naHR0cHM6Ly9ub3RpZnB1c2guY29tL3NjcmlwdHMvJzsKICAgICAgICAgICAgdmFyIHQ9ZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgnc2NyaXB0Jyk7CiAgICAgICAgICAgIHQudHlwZT0ndGV4dC9qYXZhc2NyaXB0JzsKICAgICAgICAgICAgdC5kZWZlcj10cnVlOwogICAgICAgICAgICB0LmFzeW5jPXRydWU7CiAgICAgICAgICAgIHQuc3JjPWUrJ25hZHotc2RrLmpzJzsKICAgICAgICAgICAgdmFyIHM9ZG9jdW1lbnQuZ2V0RWxlbWVudHNCeVRhZ05hbWUoJ3NjcmlwdCcpWzBdOwogICAgICAgICAgICBzLnBhcmVudE5vZGUuaW5zZXJ0QmVmb3JlKHQscyl9KSgpOwogICAgICAgIDwvc2NyaXB0Pg=='></tm-consent>    
+        <tm-modal id="tm-modal-revoke-tracking" additionalClose="Schliessen">
+        <div class="tm-modal__headline">Widerruf Tracking & Cookies</div>
+        <p class="tm-modal__text">Du hast erfolgreich deine Einwilligung in die Nutzung unseres Angebots mit Tracking und Cookies widerrufen. Damit entfallen alle Einwilligungen, die du zuvor über den (Cookie-) Einwilligungsbanner bzw. über den Privacy-Manager erteilt hast. Du kannst dich jetzt erneut zwischen dem Pur-Abo und der Nutzung mit Tracking und Cookies entscheiden. Bitte beachte, dass dieser Widerruf aus technischen Gründen keine Wirksamkeit für sonstige Einwilligungen (z.B. in den Empfang von Newslettern) entfalten kann. Bitte wende dich diesbezüglich an datenschutz@transfermarkt.de.</p>
+    </tm-modal>
+
+<tm-consent type="stroeer" no-checkbox embed="PHNjcmlwdCAgc3JjPSJodHRwczovL2Nkbi5zdHJvZWVyZGlnaXRhbGdyb3VwLmRlL21ldGF0YWcvbGl2ZS90cmFuc2Zlcm1hcmt0LmRlL21ldGFUYWcubWluLmpzIiBhc3luYz0iYXN5bmMiPjwvc2NyaXB0Pg=="></tm-consent>
+<script type="text/javascript" src="https://tmsi.akamaized.net/js/svelte-components/subnavigation/bundle.js"></script>
+<script type="text/javascript" src="https://tmssl.akamaized.net/assets/aa69c6e9c51f1e811847082c63633956/gridview/jquery.yiigridview.js?lm=1779364067"></script>
+<script type="text/javascript" src="https://tmsi.akamaized.net/js/svelte-components/relevant-news/bundle.js"></script>
+<script type="text/javascript" src="https://tmssl.akamaized.net/js/custom/vendors.min.js?lm=1779364067"></script>
+<script type="text/javascript" src="https://tmsi.akamaized.net/js/svelte-components/domain-switcher/bundle.js"></script>
+<script type="text/javascript" src="https://tmsi.akamaized.net/js/svelte-components/quick-select-bar/bundle.js"></script>
+<script type="text/javascript" src="https://tmsi.akamaized.net/js/svelte-components/userbox/bundle.js"></script>
+<script type="text/javascript" src="https://tmsi.akamaized.net/js/svelte-components/live-match-count/bundle.js"></script>
+<script type="text/javascript" src="https://tmsi.akamaized.net/js/svelte-components/domain-note/bundle.js"></script>
+<script type="text/javascript" src="https://tmsi.akamaized.net/js/svelte-components/modal/bundle.js"></script>
+<script type="text/javascript">
+/*<![CDATA[*/
+	var loginUrl='/profil/login';
+	var onlyDE = '1';
+	var onlyMobile = '';
+	var onlyTablet = '';
+	var getUserID = '';
+
+jQuery(function($) {
+jQuery('#yw1').yiiGridView({'ajaxUpdate':['yw1'],'ajaxVar':'ajax','pagerClass':'pager','loadingClass':'grid\x2Dview\x2Dloading','filterClass':'filters','tableClass':'items','selectableRows':1,'enableHistory':false,'updateSelector':'\x7Bpage\x7D,\x20\x7Bsort\x7D','filterSelector':'\x7Bfilter\x7D'});
+jQuery('#yw2').yiiGridView({'ajaxUpdate':['yw2'],'ajaxVar':'ajax','pagerClass':'pager','loadingClass':'grid\x2Dview\x2Dloading','filterClass':'filters','tableClass':'items','selectableRows':1,'enableHistory':false,'updateSelector':'\x7Bpage\x7D,\x20\x7Bsort\x7D','filterSelector':'\x7Bfilter\x7D','pageVar':'page'});
+});
+/*]]>*/
+</script>
+</body>
+
+</html>

@@ -1,0 +1,1985 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WC2026 · Match Intelligence</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Mono:wght@400;500&display=swap"
+        rel="stylesheet" />
+    <style>
+        /* ── Reset & tokens ─────────────────────────────────────────────────── */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --ink: #0a0e1a;
+            --ink2: #0d1222;
+            --surface: #111827;
+            --surface2: #1a2235;
+            --surface3: #202d45;
+            --border: rgba(255, 255, 255, 0.07);
+            --border2: rgba(255, 255, 255, 0.12);
+            --pitch: #00e676;
+            --pitch-dim: #00b85a;
+            --pitch-glow: rgba(0, 230, 118, 0.18);
+            --amber: #ffb547;
+            --amber-glow: rgba(255, 181, 71, 0.18);
+            --red: #ff5252;
+            --blue: #448aff;
+            --txt: #e8eaf6;
+            --txt2: #8892a4;
+            --txt3: #4a5568;
+            --font-head: 'Bebas Neue', sans-serif;
+            --font-body: 'DM Sans', sans-serif;
+            --font-mono: 'DM Mono', monospace;
+            --r: 12px;
+            --r2: 20px;
+        }
+
+        html {
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--ink);
+            color: var(--txt);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ── Noise texture overlay ────────────────────────────────────────────── */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+            background-size: 200px 200px;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        /* ── Pitch grid background ────────────────────────────────────────────── */
+        .pitch-bg {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            background:
+                linear-gradient(rgba(0, 230, 118, 0.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 230, 118, 0.025) 1px, transparent 1px);
+            background-size: 60px 60px;
+            mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 30%, transparent 100%);
+        }
+
+        /* ── Layout ─────────────────────────────────────────────────────────── */
+        .shell {
+            position: relative;
+            z-index: 1;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+
+        /* ── Header ──────────────────────────────────────────────────────────── */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 28px 0 24px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .logo-mark {
+            width: 44px;
+            height: 44px;
+            background: var(--pitch);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 24px var(--pitch-glow), 0 0 60px rgba(0, 230, 118, 0.1);
+        }
+
+        .logo-mark svg {
+            width: 26px;
+            height: 26px;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-title {
+            font-family: var(--font-head);
+            font-size: 22px;
+            letter-spacing: 3px;
+            color: var(--txt);
+            line-height: 1;
+        }
+
+        .logo-sub {
+            font-size: 10px;
+            letter-spacing: 2px;
+            color: var(--pitch);
+            text-transform: uppercase;
+            font-weight: 500;
+            margin-top: 2px;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .live-badge {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            color: var(--pitch);
+            text-transform: uppercase;
+        }
+
+        .live-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--pitch);
+            box-shadow: 0 0 10px var(--pitch);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.5;
+                transform: scale(0.8);
+            }
+        }
+
+        .date-chip {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--txt2);
+            letter-spacing: 1px;
+        }
+
+        /* ── Section label ────────────────────────────────────────────────────── */
+        .section-label {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--txt3);
+            margin-bottom: 14px;
+        }
+
+        /* ── MATCH SELECTOR ──────────────────────────────────────────────────── */
+        .selector-section {
+            margin-top: 40px;
+        }
+
+        .matchup-selector {
+            display: grid;
+            grid-template-columns: 1fr 80px 1fr;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .team-picker {
+            background: var(--surface);
+            border: 1px solid var(--border2);
+            border-radius: var(--r2);
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .team-picker::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 80% 80% at 50% -20%, rgba(0, 230, 118, 0.06), transparent);
+            pointer-events: none;
+        }
+
+        .team-picker:focus-within {
+            border-color: var(--pitch-dim);
+            box-shadow: 0 0 0 3px var(--pitch-glow), inset 0 0 40px rgba(0, 230, 118, 0.03);
+        }
+
+        .picker-label {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--txt3);
+            margin-bottom: 12px;
+        }
+
+        .team-display {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 14px;
+        }
+
+        .flag-ring {
+            position: relative;
+            width: 56px;
+            height: 56px;
+            flex-shrink: 0;
+        }
+
+        .flag-ring svg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .flag-emoji {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            line-height: 1;
+        }
+
+        .team-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .team-name-display {
+            font-family: var(--font-head);
+            font-size: 28px;
+            letter-spacing: 2px;
+            color: var(--txt);
+            line-height: 1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .team-rank {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--txt3);
+            margin-top: 3px;
+        }
+
+        .team-select {
+            width: 100%;
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--txt);
+            font-family: var(--font-body);
+            font-size: 13px;
+            padding: 10px 12px;
+            cursor: pointer;
+            outline: none;
+            transition: border-color 0.2s;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%234a5568' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            padding-right: 32px;
+        }
+
+        .team-select:focus {
+            border-color: var(--pitch-dim);
+        }
+
+        .team-select option {
+            background: var(--surface2);
+        }
+
+        /* VS divider */
+        .vs-divider {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .vs-text {
+            font-family: var(--font-head);
+            font-size: 36px;
+            letter-spacing: 4px;
+            color: var(--txt3);
+            line-height: 1;
+        }
+
+        .vs-line {
+            width: 1px;
+            height: 30px;
+            background: linear-gradient(to bottom, transparent, var(--border2), transparent);
+        }
+
+        /* Context row */
+        .context-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .ctx-field label {
+            display: block;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--txt3);
+            margin-bottom: 6px;
+        }
+
+        .ctx-select {
+            width: 100%;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--txt2);
+            font-family: var(--font-body);
+            font-size: 12px;
+            padding: 9px 10px;
+            cursor: pointer;
+            outline: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%234a5568' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            padding-right: 28px;
+            transition: border-color 0.2s;
+        }
+
+        .ctx-select:focus {
+            border-color: var(--pitch-dim);
+        }
+
+        .ctx-select option {
+            background: var(--surface2);
+        }
+
+        /* Predict button */
+        .predict-btn {
+            width: 100%;
+            margin-top: 24px;
+            padding: 18px;
+            background: var(--pitch);
+            color: var(--ink);
+            border: none;
+            border-radius: var(--r);
+            font-family: var(--font-head);
+            font-size: 20px;
+            letter-spacing: 4px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.15s, box-shadow 0.3s;
+            box-shadow: 0 4px 30px rgba(0, 230, 118, 0.3);
+        }
+
+        .predict-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .predict-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 40px rgba(0, 230, 118, 0.45);
+        }
+
+        .predict-btn:active {
+            transform: translateY(0);
+        }
+
+        .predict-btn.loading {
+            opacity: 0.7;
+            cursor: wait;
+        }
+
+        /* ── RESULTS SECTION ────────────────────────────────────────────────── */
+        #results {
+            margin-top: 48px;
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            pointer-events: none;
+        }
+
+        #results.visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: all;
+        }
+
+        /* ── SCOREBOARD ──────────────────────────────────────────────────────── */
+        .scoreboard {
+            background: var(--surface);
+            border: 1px solid var(--border2);
+            border-radius: var(--r2);
+            overflow: hidden;
+            position: relative;
+            margin-bottom: 24px;
+        }
+
+        .scoreboard-top-bar {
+            background: linear-gradient(90deg, var(--surface2), var(--surface3));
+            padding: 10px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .scoreboard-label {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--txt3);
+        }
+
+        .stage-badge {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            letter-spacing: 1px;
+            color: var(--amber);
+            background: var(--amber-glow);
+            padding: 3px 10px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 181, 71, 0.2);
+        }
+
+        .scoreboard-main {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            padding: 32px 40px;
+            gap: 24px;
+        }
+
+        .score-team {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .score-flag {
+            font-size: 48px;
+            line-height: 1;
+        }
+
+        .score-name {
+            font-family: var(--font-head);
+            font-size: 32px;
+            letter-spacing: 3px;
+            color: var(--txt);
+            text-align: center;
+        }
+
+        .score-conf {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: var(--txt3);
+            text-transform: uppercase;
+        }
+
+        .score-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .score-digits {
+            font-family: var(--font-head);
+            font-size: 72px;
+            letter-spacing: 12px;
+            color: var(--pitch);
+            line-height: 1;
+            text-shadow: 0 0 40px var(--pitch-glow);
+            position: relative;
+        }
+
+        .score-sep {
+            font-family: var(--font-head);
+            font-size: 40px;
+            color: var(--txt3);
+            margin: 0 4px;
+        }
+
+        .score-label {
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--txt3);
+        }
+
+        .xg-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 2px;
+        }
+
+        .xg-chip {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--txt2);
+            background: var(--surface2);
+            padding: 3px 8px;
+            border-radius: 4px;
+        }
+
+        .xg-label {
+            font-size: 9px;
+            letter-spacing: 2px;
+            color: var(--txt3);
+            text-transform: uppercase;
+        }
+
+        /* ── PROBABILITY BARS ────────────────────────────────────────────────── */
+        .prob-section {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .prob-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--r);
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .prob-card.winner {
+            border-color: var(--pitch-dim);
+            box-shadow: 0 0 30px rgba(0, 230, 118, 0.1);
+        }
+
+        .prob-card.winner::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 100% 100% at 50% 110%, rgba(0, 230, 118, 0.08), transparent 60%);
+            pointer-events: none;
+        }
+
+        .prob-outcome {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--txt3);
+            margin-bottom: 10px;
+        }
+
+        .prob-number {
+            font-family: var(--font-head);
+            font-size: 52px;
+            letter-spacing: 1px;
+            line-height: 1;
+            color: var(--txt);
+            transition: color 0.5s;
+        }
+
+        .prob-card.winner .prob-number {
+            color: var(--pitch);
+        }
+
+        .prob-percent {
+            font-family: var(--font-head);
+            font-size: 24px;
+            color: var(--txt3);
+        }
+
+        .prob-bar-track {
+            width: 100%;
+            height: 4px;
+            background: var(--surface3);
+            border-radius: 2px;
+            margin-top: 14px;
+            overflow: hidden;
+        }
+
+        .prob-bar-fill {
+            height: 100%;
+            border-radius: 2px;
+            width: 0%;
+            transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .prob-card:nth-child(1) .prob-bar-fill {
+            background: var(--blue);
+        }
+
+        .prob-card:nth-child(2) .prob-bar-fill {
+            background: var(--amber);
+        }
+
+        .prob-card:nth-child(3) .prob-bar-fill {
+            background: var(--pitch);
+        }
+
+        .model-breakdown {
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .model-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 10px;
+        }
+
+        .model-name {
+            color: var(--txt3);
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        .model-val {
+            font-family: var(--font-mono);
+            color: var(--txt2);
+        }
+
+        /* ── METRICS GRID ────────────────────────────────────────────────────── */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+            margin-bottom: 24px;
+        }
+
+        .metric-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--r);
+            padding: 18px;
+            position: relative;
+        }
+
+        .metric-card::after {
+            content: attr(data-icon);
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            font-size: 18px;
+            opacity: 0.4;
+        }
+
+        .metric-label {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--txt3);
+            margin-bottom: 8px;
+        }
+
+        .metric-value {
+            font-family: var(--font-head);
+            font-size: 28px;
+            letter-spacing: 1px;
+            color: var(--txt);
+            line-height: 1;
+        }
+
+        .metric-sub {
+            font-size: 11px;
+            color: var(--txt3);
+            margin-top: 4px;
+        }
+
+        /* ── DUAL PANEL ──────────────────────────────────────────────────────── */
+        .dual-panel {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        /* Tournament win arcs */
+        .arc-panel {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--r);
+            padding: 24px;
+        }
+
+        .arc-panel-title {
+            font-family: var(--font-head);
+            font-size: 16px;
+            letter-spacing: 2px;
+            color: var(--txt);
+            margin-bottom: 4px;
+        }
+
+        .arc-panel-sub {
+            font-size: 11px;
+            color: var(--txt3);
+            margin-bottom: 20px;
+        }
+
+        .arc-chart-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 32px;
+        }
+
+        .arc-svg-wrap {
+            position: relative;
+            width: 140px;
+            height: 140px;
+            flex-shrink: 0;
+        }
+
+        .arc-center-label {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .arc-pct {
+            font-family: var(--font-head);
+            font-size: 28px;
+            color: var(--pitch);
+            line-height: 1;
+        }
+
+        .arc-word {
+            font-size: 9px;
+            letter-spacing: 2px;
+            color: var(--txt3);
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+
+        .arc-legend {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .arc-leg-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .arc-leg-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .arc-leg-label {
+            font-size: 11px;
+            color: var(--txt2);
+            flex: 1;
+        }
+
+        .arc-leg-val {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--txt);
+        }
+
+        /* Key factors panel */
+        .factors-panel {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--r);
+            padding: 24px;
+        }
+
+        .factor-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .factor-row:last-child {
+            border-bottom: none;
+        }
+
+        .factor-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--surface2);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            flex-shrink: 0;
+        }
+
+        .factor-info {
+            flex: 1;
+        }
+
+        .factor-name {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--txt);
+            margin-bottom: 2px;
+        }
+
+        .factor-detail {
+            font-size: 11px;
+            color: var(--txt3);
+        }
+
+        .factor-bar-wrap {
+            width: 80px;
+        }
+
+        .factor-bar-track {
+            height: 3px;
+            background: var(--surface3);
+            border-radius: 2px;
+            overflow: hidden;
+            margin-bottom: 3px;
+        }
+
+        .factor-bar-fill {
+            height: 100%;
+            border-radius: 2px;
+            transition: width 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .factor-bar-fill.pos {
+            background: var(--pitch);
+        }
+
+        .factor-bar-fill.neg {
+            background: var(--red);
+        }
+
+        .factor-bar-fill.neu {
+            background: var(--amber);
+        }
+
+        .factor-val {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            color: var(--txt3);
+            text-align: right;
+        }
+
+        /* ── BOTTOM HEATMAP ──────────────────────────────────────────────────── */
+        .heatmap-panel {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--r);
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+
+        .heatmap-title {
+            font-family: var(--font-head);
+            font-size: 16px;
+            letter-spacing: 2px;
+            color: var(--txt);
+            margin-bottom: 4px;
+        }
+
+        .heatmap-sub {
+            font-size: 11px;
+            color: var(--txt3);
+            margin-bottom: 20px;
+        }
+
+        .heatmap-grid-wrap {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .heatmap-axis-label {
+            font-size: 10px;
+            letter-spacing: 1px;
+            color: var(--txt3);
+            text-transform: uppercase;
+            writing-mode: vertical-lr;
+            transform: rotate(180deg);
+            align-self: center;
+            margin-right: 4px;
+        }
+
+        .heatmap-inner {
+            flex: 1;
+        }
+
+        .heatmap-col-labels {
+            display: flex;
+            margin-left: 36px;
+            margin-bottom: 4px;
+        }
+
+        .heatmap-col-label {
+            flex: 1;
+            text-align: center;
+            font-family: var(--font-mono);
+            font-size: 9px;
+            color: var(--txt3);
+        }
+
+        .heatmap-rows {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .heatmap-row {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+
+        .heatmap-row-label {
+            width: 32px;
+            font-family: var(--font-mono);
+            font-size: 9px;
+            color: var(--txt3);
+            text-align: right;
+            padding-right: 6px;
+        }
+
+        .heatmap-cell {
+            flex: 1;
+            aspect-ratio: 1;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-mono);
+            font-size: 9px;
+            font-weight: 500;
+            cursor: default;
+            transition: transform 0.15s, box-shadow 0.15s;
+            position: relative;
+        }
+
+        .heatmap-cell:hover {
+            transform: scale(1.15);
+            z-index: 2;
+        }
+
+        .heatmap-cell .cell-tooltip {
+            display: none;
+            position: absolute;
+            bottom: calc(100% + 6px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--surface3);
+            border: 1px solid var(--border2);
+            border-radius: 6px;
+            padding: 5px 8px;
+            font-size: 10px;
+            color: var(--txt);
+            white-space: nowrap;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .heatmap-cell:hover .cell-tooltip {
+            display: block;
+        }
+
+        .heatmap-legend {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            padding-left: 12px;
+            align-self: center;
+        }
+
+        .legend-bar {
+            width: 12px;
+            height: 160px;
+            border-radius: 6px;
+            background: linear-gradient(to bottom,
+                    rgba(0, 230, 118, 0.9),
+                    rgba(0, 230, 118, 0.4),
+                    rgba(0, 230, 118, 0.05),
+                    rgba(255, 82, 82, 0.05),
+                    rgba(255, 82, 82, 0.3));
+        }
+
+        .legend-hi {
+            font-size: 9px;
+            color: var(--pitch);
+            letter-spacing: 1px;
+        }
+
+        .legend-lo {
+            font-size: 9px;
+            color: var(--red);
+            letter-spacing: 1px;
+        }
+
+        /* ── Loading spinner ─────────────────────────────────────────────────── */
+        .spinner-wrap {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 40px;
+            color: var(--txt3);
+            font-size: 13px;
+            letter-spacing: 2px;
+        }
+
+        .spinner-wrap.active {
+            display: flex;
+        }
+
+        .spinner {
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--surface3);
+            border-top-color: var(--pitch);
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* ── Animations ──────────────────────────────────────────────────────── */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .anim-in {
+            opacity: 0;
+            animation: fadeUp 0.5s ease forwards;
+        }
+
+        .anim-in:nth-child(1) {
+            animation-delay: 0.05s;
+        }
+
+        .anim-in:nth-child(2) {
+            animation-delay: 0.12s;
+        }
+
+        .anim-in:nth-child(3) {
+            animation-delay: 0.19s;
+        }
+
+        .anim-in:nth-child(4) {
+            animation-delay: 0.26s;
+        }
+
+        /* ── Responsive ──────────────────────────────────────────────────────── */
+        @media (max-width: 900px) {
+            .matchup-selector {
+                grid-template-columns: 1fr;
+            }
+
+            .vs-divider {
+                display: none;
+            }
+
+            .prob-section {
+                grid-template-columns: 1fr;
+            }
+
+            .dual-panel {
+                grid-template-columns: 1fr;
+            }
+
+            .metrics-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .scoreboard-main {
+                grid-template-columns: 1fr;
+                padding: 24px;
+            }
+
+            .context-row {
+                grid-template-columns: 1fr;
+            }
+
+            .heatmap-grid-wrap {
+                flex-direction: column;
+            }
+
+            .heatmap-axis-label {
+                writing-mode: horizontal-tb;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="pitch-bg"></div>
+
+    <div class="shell">
+
+        <!-- ── Header ── -->
+        <header>
+            <div class="logo">
+                <div class="logo-mark">
+                    <svg viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="13" cy="13" r="11" stroke="#0a0e1a" stroke-width="1.5" />
+                        <path d="M13 2C13 2 9 7 9 13s4 11 4 11" stroke="#0a0e1a" stroke-width="1.5" />
+                        <path d="M13 2c0 0 4 5 4 11s-4 11-4 11" stroke="#0a0e1a" stroke-width="1.5" />
+                        <path d="M2 13h22M3 8h20M3 18h20" stroke="#0a0e1a" stroke-width="1.5" />
+                    </svg>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-title">MATCHIQ</span>
+                    <span class="logo-sub">WC 2026 · Intelligence Engine</span>
+                </div>
+            </div>
+            <div class="header-right">
+                <span class="date-chip" id="live-date">–</span>
+                <div class="live-badge">
+                    <div class="live-dot"></div>Model Active
+                </div>
+            </div>
+        </header>
+
+        <!-- ── Match selector ── -->
+        <div class="selector-section">
+            <div class="section-label">Configure Match</div>
+
+            <div class="matchup-selector">
+
+                <!-- Home team -->
+                <div class="team-picker" id="home-picker">
+                    <div class="picker-label">Home / Team A</div>
+                    <div class="team-display">
+                        <div class="flag-ring">
+                            <svg viewBox="0 0 56 56">
+                                <circle cx="28" cy="28" r="26" fill="none" stroke="rgba(0,230,118,0.3)"
+                                    stroke-width="1.5" stroke-dasharray="4 3" />
+                            </svg>
+                            <div class="flag-emoji" id="home-flag">🌍</div>
+                        </div>
+                        <div class="team-info">
+                            <div class="team-name-display" id="home-name">Select Team</div>
+                            <div class="team-rank" id="home-rank">—</div>
+                        </div>
+                    </div>
+                    <select class="team-select" id="home-select" onchange="onTeamChange('home')">
+                        <option value="">— Choose team —</option>
+                    </select>
+                </div>
+
+                <!-- VS -->
+                <div class="vs-divider">
+                    <div class="vs-line"></div>
+                    <div class="vs-text">VS</div>
+                    <div class="vs-line"></div>
+                </div>
+
+                <!-- Away team -->
+                <div class="team-picker" id="away-picker">
+                    <div class="picker-label">Away / Team B</div>
+                    <div class="team-display">
+                        <div class="flag-ring">
+                            <svg viewBox="0 0 56 56">
+                                <circle cx="28" cy="28" r="26" fill="none" stroke="rgba(68,138,255,0.3)"
+                                    stroke-width="1.5" stroke-dasharray="4 3" />
+                            </svg>
+                            <div class="flag-emoji" id="away-flag">🌍</div>
+                        </div>
+                        <div class="team-info">
+                            <div class="team-name-display" id="away-name">Select Team</div>
+                            <div class="team-rank" id="away-rank">—</div>
+                        </div>
+                    </div>
+                    <select class="team-select" id="away-select" onchange="onTeamChange('away')">
+                        <option value="">— Choose team —</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Context row -->
+            <div class="context-row" style="margin-top:16px">
+                <div class="ctx-field">
+                    <label>Venue</label>
+                    <select class="ctx-select" id="venue-select">
+                        <option>MetLife Stadium</option>
+                        <option>SoFi Stadium</option>
+                        <option>AT&T Stadium</option>
+                        <option>Levi's Stadium</option>
+                        <option>Arrowhead Stadium</option>
+                        <option>NRG Stadium</option>
+                        <option>Hard Rock Stadium</option>
+                        <option>Lincoln Financial Field</option>
+                        <option>Gillette Stadium</option>
+                        <option>Mercedes-Benz Stadium</option>
+                        <option>Lumen Field</option>
+                        <option>BMO Field</option>
+                        <option>BC Place</option>
+                        <option>Estadio Azteca</option>
+                        <option>Estadio Akron</option>
+                        <option>Estadio BBVA</option>
+                    </select>
+                </div>
+                <div class="ctx-field">
+                    <label>Stage</label>
+                    <select class="ctx-select" id="stage-select">
+                        <option value="GROUP_STAGE">Group Stage</option>
+                        <option value="ROUND_OF_32">Round of 32</option>
+                        <option value="ROUND_OF_16">Round of 16</option>
+                        <option value="QUARTER_FINALS">Quarter-Final</option>
+                        <option value="SEMI_FINALS">Semi-Final</option>
+                        <option value="FINAL">Final</option>
+                    </select>
+                </div>
+                <div class="ctx-field">
+                    <label>Match Date</label>
+                    <input type="date" class="ctx-select" id="date-input" value="2026-06-15"
+                        style="color:var(--txt2)" />
+                </div>
+            </div>
+
+            <!-- Predict button -->
+            <button class="predict-btn" id="predict-btn" onclick="runPrediction()">
+                ANALYSE MATCH
+            </button>
+        </div>
+
+        <!-- ── Spinner ── -->
+        <div class="spinner-wrap" id="spinner">
+            <div class="spinner"></div>
+            <span style="text-transform:uppercase;letter-spacing:2px;font-size:11px">Running ensemble models</span>
+        </div>
+
+        <!-- ── Results ── -->
+        <div id="results">
+
+            <!-- Scoreboard -->
+            <div class="scoreboard anim-in">
+                <div class="scoreboard-top-bar">
+                    <span class="scoreboard-label">Most Likely Result</span>
+                    <span class="stage-badge" id="stage-label-badge">Group Stage</span>
+                </div>
+                <div class="scoreboard-main">
+                    <div class="score-team">
+                        <div class="score-flag" id="sb-home-flag">🏴</div>
+                        <div class="score-name" id="sb-home-name">—</div>
+                        <div class="score-conf" id="sb-home-conf">—</div>
+                    </div>
+                    <div class="score-center">
+                        <div class="score-digits">
+                            <span id="sb-score-h">–</span>
+                            <span class="score-sep">:</span>
+                            <span id="sb-score-a">–</span>
+                        </div>
+                        <div class="score-label">Predicted Score</div>
+                        <div class="xg-row" style="margin-top:8px">
+                            <span class="xg-chip" id="xg-home-chip">xG –</span>
+                            <span class="xg-label">Expected Goals</span>
+                            <span class="xg-chip" id="xg-away-chip">xG –</span>
+                        </div>
+                    </div>
+                    <div class="score-team">
+                        <div class="score-flag" id="sb-away-flag">🏴</div>
+                        <div class="score-name" id="sb-away-name">—</div>
+                        <div class="score-conf" id="sb-away-conf">—</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Probability bars -->
+            <div class="prob-section">
+                <div class="prob-card anim-in" id="prob-away-card">
+                    <div class="prob-outcome" id="prob-away-label">Away Win</div>
+                    <div><span class="prob-number" id="prob-away-num">–</span><span class="prob-percent">%</span></div>
+                    <div class="prob-bar-track">
+                        <div class="prob-bar-fill" id="bar-away"></div>
+                    </div>
+                    <div class="model-breakdown">
+                        <div class="model-row"><span class="model-name">POISSON</span><span class="model-val"
+                                id="m-poisson-away">–</span></div>
+                        <div class="model-row"><span class="model-name">XGBOOST</span><span class="model-val"
+                                id="m-xgb-away">–</span></div>
+                        <div class="model-row"><span class="model-name">NEURAL</span><span class="model-val"
+                                id="m-nn-away">–</span></div>
+                    </div>
+                </div>
+                <div class="prob-card anim-in" id="prob-draw-card">
+                    <div class="prob-outcome">Draw</div>
+                    <div><span class="prob-number" id="prob-draw-num">–</span><span class="prob-percent">%</span></div>
+                    <div class="prob-bar-track">
+                        <div class="prob-bar-fill" id="bar-draw"></div>
+                    </div>
+                    <div class="model-breakdown">
+                        <div class="model-row"><span class="model-name">POISSON</span><span class="model-val"
+                                id="m-poisson-draw">–</span></div>
+                        <div class="model-row"><span class="model-name">XGBOOST</span><span class="model-val"
+                                id="m-xgb-draw">–</span></div>
+                        <div class="model-row"><span class="model-name">NEURAL</span><span class="model-val"
+                                id="m-nn-draw">–</span></div>
+                    </div>
+                </div>
+                <div class="prob-card anim-in" id="prob-home-card">
+                    <div class="prob-outcome" id="prob-home-label">Home Win</div>
+                    <div><span class="prob-number" id="prob-home-num">–</span><span class="prob-percent">%</span></div>
+                    <div class="prob-bar-track">
+                        <div class="prob-bar-fill" id="bar-home"></div>
+                    </div>
+                    <div class="model-breakdown">
+                        <div class="model-row"><span class="model-name">POISSON</span><span class="model-val"
+                                id="m-poisson-home">–</span></div>
+                        <div class="model-row"><span class="model-name">XGBOOST</span><span class="model-val"
+                                id="m-xgb-home">–</span></div>
+                        <div class="model-row"><span class="model-name">NEURAL</span><span class="model-val"
+                                id="m-nn-home">–</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Metric chips -->
+            <div class="metrics-grid">
+                <div class="metric-card anim-in" data-icon="📍">
+                    <div class="metric-label">Venue</div>
+                    <div class="metric-value" id="m-venue"
+                        style="font-size:16px;font-family:var(--font-body);font-weight:600">—</div>
+                    <div class="metric-sub" id="m-altitude">Altitude: — m</div>
+                </div>
+                <div class="metric-card anim-in" data-icon="🌡">
+                    <div class="metric-label">Conditions</div>
+                    <div class="metric-value" id="m-temp">—°C</div>
+                    <div class="metric-sub" id="m-conditions">—</div>
+                </div>
+                <div class="metric-card anim-in" data-icon="✈️">
+                    <div class="metric-label">Travel Stress</div>
+                    <div class="metric-value" id="m-travel">—</div>
+                    <div class="metric-sub" id="m-travel-sub">km advantage</div>
+                </div>
+                <div class="metric-card anim-in" data-icon="⚡">
+                    <div class="metric-label">ELO Δ</div>
+                    <div class="metric-value" id="m-elo">—</div>
+                    <div class="metric-sub" id="m-elo-sub">rating points</div>
+                </div>
+            </div>
+
+            <!-- Dual panel: arcs + factors -->
+            <div class="dual-panel">
+
+                <!-- Tournament win arcs -->
+                <div class="arc-panel anim-in">
+                    <div class="arc-panel-title">TOURNAMENT OUTLOOK</div>
+                    <div class="arc-panel-sub">Simulated WC2026 win probabilities</div>
+                    <div class="arc-chart-wrap">
+                        <div style="display:flex;flex-direction:column;align-items:center;gap:16px">
+                            <!-- Home arc -->
+                            <div style="display:flex;align-items:center;gap:16px">
+                                <div class="arc-svg-wrap" style="width:110px;height:110px">
+                                    <svg viewBox="0 0 110 110" id="arc-home-svg">
+                                        <circle cx="55" cy="55" r="44" fill="none" stroke="var(--surface3)"
+                                            stroke-width="8" />
+                                        <circle cx="55" cy="55" r="44" fill="none" stroke="var(--pitch)"
+                                            stroke-width="8" stroke-dasharray="0 276.46" stroke-dashoffset="69.12"
+                                            stroke-linecap="round" id="arc-home-circle"
+                                            style="transition: stroke-dasharray 1.4s cubic-bezier(0.16,1,0.3,1)" />
+                                    </svg>
+                                    <div class="arc-center-label">
+                                        <span class="arc-pct" id="arc-home-pct">–%</span>
+                                        <span class="arc-word" id="arc-home-word">Home</span>
+                                    </div>
+                                </div>
+                                <div class="arc-legend" style="min-width:140px">
+                                    <div class="arc-leg-row">
+                                        <div class="arc-leg-dot" style="background:var(--pitch)"></div><span
+                                            class="arc-leg-label">Win tournament</span><span class="arc-leg-val"
+                                            id="al-win-h">–</span>
+                                    </div>
+                                    <div class="arc-leg-row">
+                                        <div class="arc-leg-dot" style="background:var(--pitch-dim)"></div><span
+                                            class="arc-leg-label">Reach final</span><span class="arc-leg-val"
+                                            id="al-fin-h">–</span>
+                                    </div>
+                                    <div class="arc-leg-row">
+                                        <div class="arc-leg-dot" style="background:var(--surface3)"></div><span
+                                            class="arc-leg-label">Semi-final</span><span class="arc-leg-val"
+                                            id="al-sf-h">–</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div style="width:100%;height:1px;background:var(--border)"></div>
+
+                            <!-- Away arc -->
+                            <div style="display:flex;align-items:center;gap:16px">
+                                <div class="arc-svg-wrap" style="width:110px;height:110px">
+                                    <svg viewBox="0 0 110 110" id="arc-away-svg">
+                                        <circle cx="55" cy="55" r="44" fill="none" stroke="var(--surface3)"
+                                            stroke-width="8" />
+                                        <circle cx="55" cy="55" r="44" fill="none" stroke="var(--blue)" stroke-width="8"
+                                            stroke-dasharray="0 276.46" stroke-dashoffset="69.12" stroke-linecap="round"
+                                            id="arc-away-circle"
+                                            style="transition: stroke-dasharray 1.4s cubic-bezier(0.16,1,0.3,1)" />
+                                    </svg>
+                                    <div class="arc-center-label">
+                                        <span class="arc-pct" style="color:var(--blue)" id="arc-away-pct">–%</span>
+                                        <span class="arc-word" id="arc-away-word">Away</span>
+                                    </div>
+                                </div>
+                                <div class="arc-legend" style="min-width:140px">
+                                    <div class="arc-leg-row">
+                                        <div class="arc-leg-dot" style="background:var(--blue)"></div><span
+                                            class="arc-leg-label">Win tournament</span><span class="arc-leg-val"
+                                            id="al-win-a">–</span>
+                                    </div>
+                                    <div class="arc-leg-row">
+                                        <div class="arc-leg-dot" style="background:#2a6abf"></div><span
+                                            class="arc-leg-label">Reach final</span><span class="arc-leg-val"
+                                            id="al-fin-a">–</span>
+                                    </div>
+                                    <div class="arc-leg-row">
+                                        <div class="arc-leg-dot" style="background:var(--surface3)"></div><span
+                                            class="arc-leg-label">Semi-final</span><span class="arc-leg-val"
+                                            id="al-sf-a">–</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Key factors -->
+                <div class="factors-panel anim-in">
+                    <div class="arc-panel-title" style="margin-bottom:4px">KEY FACTORS</div>
+                    <div class="arc-panel-sub">Signals driving this prediction</div>
+                    <div id="factors-list">
+                        <!-- Filled by JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Score heatmap -->
+            <div class="heatmap-panel anim-in">
+                <div class="heatmap-title">SCORE PROBABILITY MATRIX</div>
+                <div class="heatmap-sub">P(home scores i : away scores j) — brighter = more likely</div>
+                <div class="heatmap-grid-wrap">
+                    <span class="heatmap-axis-label" id="heatmap-home-label">HOME</span>
+                    <div class="heatmap-inner">
+                        <div class="heatmap-col-labels" id="heatmap-col-labels">
+                            <!-- Away goals 0–6 -->
+                        </div>
+                        <div class="heatmap-rows" id="heatmap-rows">
+                            <!-- Rows 0–6 -->
+                        </div>
+                        <div style="text-align:center;margin-top:8px;font-size:10px;color:var(--txt3);letter-spacing:2px"
+                            id="heatmap-away-label">AWAY GOALS →</div>
+                    </div>
+                    <div class="heatmap-legend">
+                        <span class="legend-hi">High</span>
+                        <div class="legend-bar"></div>
+                        <span class="legend-lo">Low</span>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /results -->
+    </div><!-- /shell -->
+
+    <script>
+        /* ════════════════════════════════════════════════════════════════════
+           DATA
+        ════════════════════════════════════════════════════════════════════ */
+        const TEAMS = {
+            "France": { flag: "🇫🇷", conf: "UEFA", elo: 1984, rank: 2, wc: 16, pen: 0.60 },
+            "Brazil": { flag: "🇧🇷", conf: "CONMEBOL", elo: 2017, rank: 1, wc: 22, pen: 0.40 },
+            "Argentina": { flag: "🇦🇷", conf: "CONMEBOL", elo: 1975, rank: 3, wc: 18, pen: 0.67 },
+            "England": { flag: "🏴󠁧󠁢󠁥󠁮󠁧󠁿", conf: "UEFA", elo: 1954, rank: 5, wc: 16, pen: 0.25 },
+            "Spain": { flag: "🇪🇸", conf: "UEFA", elo: 1960, rank: 6, wc: 16, pen: 0.75 },
+            "Germany": { flag: "🇩🇪", conf: "UEFA", elo: 1936, rank: 4, wc: 20, pen: 0.83 },
+            "Portugal": { flag: "🇵🇹", conf: "UEFA", elo: 1942, rank: 6, wc: 9, pen: 0.80 },
+            "Netherlands": { flag: "🇳🇱", conf: "UEFA", elo: 1912, rank: 7, wc: 13, pen: 0.50 },
+            "Belgium": { flag: "🇧🇪", conf: "UEFA", elo: 1895, rank: 3, wc: 14, pen: 0.50 },
+            "Croatia": { flag: "🇭🇷", conf: "UEFA", elo: 1875, rank: 10, wc: 8, pen: 0.75 },
+            "Morocco": { flag: "🇲🇦", conf: "CAF", elo: 1797, rank: 14, wc: 6, pen: 0.67 },
+            "Japan": { flag: "🇯🇵", conf: "AFC", elo: 1816, rank: 15, wc: 7, pen: 0.33 },
+            "United States": { flag: "🇺🇸", conf: "CONCACAF", elo: 1765, rank: 16, wc: 11, pen: 0.50 },
+            "Mexico": { flag: "🇲🇽", conf: "CONCACAF", elo: 1784, rank: 11, wc: 17, pen: 0.00 },
+            "Senegal": { flag: "🇸🇳", conf: "CAF", elo: 1761, rank: 20, wc: 3, pen: 0.00 },
+            "South Korea": { flag: "🇰🇷", conf: "AFC", elo: 1752, rank: 23, wc: 11, pen: 0.67 },
+            "Colombia": { flag: "🇨🇴", conf: "CONMEBOL", elo: 1841, rank: 9, wc: 7, pen: 0.50 },
+            "Uruguay": { flag: "🇺🇾", conf: "CONMEBOL", elo: 1870, rank: 12, wc: 14, pen: 0.67 },
+            "Denmark": { flag: "🇩🇰", conf: "UEFA", elo: 1844, rank: 13, wc: 6, pen: 0.75 },
+            "Italy": { flag: "🇮🇹", conf: "UEFA", elo: 1918, rank: 9, wc: 18, pen: 0.60 },
+            "Switzerland": { flag: "🇨🇭", conf: "UEFA", elo: 1872, rank: 19, wc: 12, pen: 0.33 },
+            "Australia": { flag: "🇦🇺", conf: "AFC", elo: 1741, rank: 24, wc: 6, pen: 0.33 },
+            "Iran": { flag: "🇮🇷", conf: "AFC", elo: 1758, rank: 22, wc: 6, pen: 0.00 },
+            "Saudi Arabia": { flag: "🇸🇦", conf: "AFC", elo: 1700, rank: 56, wc: 6, pen: 0.00 },
+            "Ecuador": { flag: "🇪🇨", conf: "CONMEBOL", elo: 1773, rank: 44, wc: 4, pen: 0.00 },
+            "Canada": { flag: "🇨🇦", conf: "CONCACAF", elo: 1749, rank: 47, wc: 2, pen: 0.00 },
+            "Ghana": { flag: "🇬🇭", conf: "CAF", elo: 1703, rank: 60, wc: 4, pen: 0.00 },
+            "Nigeria": { flag: "🇳🇬", conf: "CAF", elo: 1714, rank: 40, wc: 7, pen: 0.00 },
+            "Cameroon": { flag: "🇨🇲", conf: "CAF", elo: 1696, rank: 52, wc: 8, pen: 0.00 },
+            "Tunisia": { flag: "🇹🇳", conf: "CAF", elo: 1688, rank: 34, wc: 6, pen: 0.00 },
+            "Serbia": { flag: "🇷🇸", conf: "UEFA", elo: 1831, rank: 25, wc: 13, pen: 0.00 },
+            "Turkey": { flag: "🇹🇷", conf: "UEFA", elo: 1775, rank: 28, wc: 2, pen: 0.33 },
+            "Austria": { flag: "🇦🇹", conf: "UEFA", elo: 1799, rank: 26, wc: 8, pen: 0.00 },
+            "Ivory Coast": { flag: "🇨🇮", conf: "CAF", elo: 1761, rank: 33, wc: 4, pen: 0.00 },
+            "Egypt": { flag: "🇪🇬", conf: "CAF", elo: 1712, rank: 37, wc: 3, pen: 0.00 },
+            "Jordan": { flag: "🇯🇴", conf: "AFC", elo: 1640, rank: 70, wc: 0, pen: 0.00 },
+            "Iraq": { flag: "🇮🇶", conf: "AFC", elo: 1651, rank: 65, wc: 1, pen: 0.00 },
+            "Panama": { flag: "🇵🇦", conf: "CONCACAF", elo: 1669, rank: 77, wc: 1, pen: 0.00 },
+            "Jamaica": { flag: "🇯🇲", conf: "CONCACAF", elo: 1617, rank: 47, wc: 1, pen: 0.00 },
+            "Venezuela": { flag: "🇻🇪", conf: "CONMEBOL", elo: 1692, rank: 55, wc: 0, pen: 0.00 },
+            "New Zealand": { flag: "🇳🇿", conf: "OFC", elo: 1598, rank: 97, wc: 2, pen: 0.00 },
+        };
+
+        const VENUE_META = {
+            "MetLife Stadium": { city: "East Rutherford", alt: 3, temp: 24 },
+            "SoFi Stadium": { city: "Los Angeles", alt: 82, temp: 22 },
+            "AT&T Stadium": { city: "Dallas", alt: 186, temp: 31 },
+            "Levi's Stadium": { city: "Santa Clara", alt: 15, temp: 19 },
+            "Arrowhead Stadium": { city: "Kansas City", alt: 280, temp: 28 },
+            "NRG Stadium": { city: "Houston", alt: 13, temp: 32 },
+            "Hard Rock Stadium": { city: "Miami", alt: 2, temp: 29 },
+            "Lincoln Financial Field": { city: "Philadelphia", alt: 11, temp: 25 },
+            "Gillette Stadium": { city: "Foxborough", alt: 46, temp: 21 },
+            "Mercedes-Benz Stadium": { city: "Atlanta", alt: 316, temp: 28 },
+            "Lumen Field": { city: "Seattle", alt: 5, temp: 17 },
+            "BMO Field": { city: "Toronto", alt: 76, temp: 23 },
+            "BC Place": { city: "Vancouver", alt: 10, temp: 18 },
+            "Estadio Azteca": { city: "Mexico City", alt: 2240, temp: 17 },
+            "Estadio Akron": { city: "Guadalajara", alt: 1566, temp: 22 },
+            "Estadio BBVA": { city: "Monterrey", alt: 537, temp: 29 },
+        };
+
+        /* ── Populate selects ──────────────────────────────────────────────── */
+        const teamNames = Object.keys(TEAMS).sort();
+        ['home-select', 'away-select'].forEach(id => {
+            const sel = document.getElementById(id);
+            teamNames.forEach(name => {
+                const opt = document.createElement('option');
+                opt.value = name; opt.textContent = name;
+                sel.appendChild(opt);
+            });
+        });
+
+        /* Set default values */
+        document.getElementById('home-select').value = 'France';
+        document.getElementById('away-select').value = 'Germany';
+        onTeamChange('home'); onTeamChange('away');
+
+        /* Date header */
+        document.getElementById('live-date').textContent =
+            new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }).toUpperCase();
+
+        function onTeamChange(side) {
+            const sel = document.getElementById(`${side}-select`);
+            const name = sel.value;
+            const team = TEAMS[name];
+            if (!team) return;
+            document.getElementById(`${side}-flag`).textContent = team.flag;
+            document.getElementById(`${side}-name`).textContent = name.toUpperCase();
+            document.getElementById(`${side}-rank`).textContent = `FIFA #${team.rank} · ${team.conf} · ELO ${team.elo}`;
+        }
+
+        /* ── API config ────────────────────────────────────────────────────── */
+        const API_BASE = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+            ? `http://${window.location.host}`
+            : window.location.origin;
+
+        /* ── Poisson helpers (used for heatmap even with real API data) ────── */
+        function poissonPMF(k, lambda) {
+            if (lambda <= 0) return k === 0 ? 1 : 0;
+            let logP = -lambda + k * Math.log(lambda);
+            for (let i = 2; i <= k; i++) logP -= Math.log(i);
+            return Math.exp(logP);
+        }
+        function buildScoreMatrix(lamH, lamA, MAX = 7) {
+            return Array.from({ length: MAX }, (_, i) =>
+                Array.from({ length: MAX }, (_, j) => poissonPMF(i, lamH) * poissonPMF(j, lamA))
+            );
+        }
+        function normalise(obj) {
+            const tot = obj.home + obj.draw + obj.away;
+            return { home: obj.home / tot, draw: obj.draw / tot, away: obj.away / tot };
+        }
+        function simulateTournamentWin(elo, appearances) {
+            const base = 1 / (1 + Math.exp(-(elo - 1900) / 150));
+            return Math.min(base * 0.12 + Math.min(appearances / 22, 1) * 0.03, 0.22);
+        }
+        function buildFactors(h, a, eloDiff, vm, altStress, hName, aName) {
+            return [
+                {
+                    icon: '📊', name: 'ELO Rating Gap',
+                    detail: `${hName} ${eloDiff > 0 ? '+' : ''}${eloDiff.toFixed(0)} pts`,
+                    pct: Math.min(Math.abs(eloDiff) / 400, 1),
+                    dir: eloDiff > 0 ? 'pos' : 'neg',
+                    val: `${Math.abs(eloDiff).toFixed(0)} pts`
+                },
+                {
+                    icon: '🏔', name: 'Altitude Stress',
+                    detail: `${vm.alt.toLocaleString()} m above sea level`,
+                    pct: altStress, dir: altStress > 0.3 ? 'neg' : 'neu',
+                    val: `${(altStress * 100).toFixed(0)}%`
+                },
+                {
+                    icon: '🌡', name: 'Heat Index',
+                    detail: `${vm.temp}°C at ${vm.city}`,
+                    pct: Math.min((vm.temp - 10) / 25, 1),
+                    dir: vm.temp > 28 ? 'neg' : 'pos',
+                    val: `${vm.temp}°C`
+                },
+                {
+                    icon: '🏆', name: 'WC Experience',
+                    detail: `${h.wc} vs ${a.wc} appearances`,
+                    pct: Math.abs(h.wc - a.wc) / 22,
+                    dir: h.wc > a.wc ? 'pos' : (h.wc < a.wc ? 'neg' : 'neu'),
+                    val: `${h.wc}–${a.wc}`
+                },
+                {
+                    icon: '🎯', name: 'Penalty Record',
+                    detail: 'Shootout win rates',
+                    pct: Math.abs(h.pen - a.pen),
+                    dir: h.pen > a.pen ? 'pos' : (h.pen < a.pen ? 'neg' : 'neu'),
+                    val: `${(h.pen * 100).toFixed(0)}–${(a.pen * 100).toFixed(0)}%`
+                },
+                {
+                    icon: '🗓', name: 'Tournament Stage',
+                    detail: document.getElementById('stage-select').selectedOptions[0].text,
+                    pct: 0.5, dir: 'neu', val: '×1.0'
+                },
+            ];
+        }
+
+        /* ── Render results ────────────────────────────────────────────────── */
+        async function runPrediction() {
+            const homeTeam = document.getElementById('home-select').value;
+            const awayTeam = document.getElementById('away-select').value;
+            const venue = document.getElementById('venue-select').value;
+            const stage = document.getElementById('stage-select').value;
+            const matchDate = document.getElementById('date-input').value || '2026-06-15';
+
+            if (!homeTeam || !awayTeam) { alert('Please select both teams.'); return; }
+            if (homeTeam === awayTeam) { alert('Please select two different teams.'); return; }
+
+            document.getElementById('spinner').classList.add('active');
+            document.getElementById('results').classList.remove('visible');
+            document.getElementById('predict-btn').classList.add('loading');
+
+            try {
+                /* ── Call real API ── */
+                const resp = await fetch(`${API_BASE}/predict`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        home_team: homeTeam, away_team: awayTeam,
+                        venue, stage, match_date: matchDate,
+                    }),
+                });
+
+                if (!resp.ok) throw new Error(`API error ${resp.status}`);
+                const data = await resp.json();
+
+                /* ── Transform API response into the shape renderResults expects ── */
+                const h = TEAMS[homeTeam], a = TEAMS[awayTeam];
+                const vm = VENUE_META[venue] || { alt: data.altitude_m || 100, temp: data.temp_c || 22, city: venue };
+                const altStress = data.altitude_stress || 0;
+                const eloDiff = data.elo_diff || (h.elo - a.elo);
+                const lamH = data.poisson_xg_home || 1.3;
+                const lamA = data.poisson_xg_away || 1.1;
+
+                /* Score from API; build matrix locally for heatmap */
+                const [scoreH, scoreA] = (data.most_likely_score || '1:1').split(':').map(Number);
+                const matrix = buildScoreMatrix(lamH, lamA);
+
+                const winsH = simulateTournamentWin(h.elo, h.wc) * 100;
+                const winsA = simulateTournamentWin(a.elo, a.wc) * 100;
+
+                const p = {
+                    ensemble: { home: data.p_home, draw: data.p_draw, away: data.p_away },
+                    poissonProbs: { home: data.poisson_p_home, draw: data.poisson_p_draw, away: data.poisson_p_away },
+                    xgbProbs: { home: data.xgb_p_home, draw: data.xgb_p_draw, away: data.xgb_p_away },
+                    nnProbs: { home: data.nn_p_home, draw: data.nn_p_draw, away: data.nn_p_away },
+                    scoreH, scoreA, lamH, lamA, matrix,
+                    eloDiff, altStress, venue: vm, venueStr: venue,
+                    winsH, winsA,
+                    finalH: winsH * 1.7, sfH: winsH * 2.5,
+                    finalA: winsA * 1.7, sfA: winsA * 2.5,
+                    factors: buildFactors(h, a, eloDiff, vm, altStress, homeTeam, awayTeam),
+                    _source: 'api',
+                };
+
+                renderResults(p, homeTeam, awayTeam, venue, stage);
+                document.getElementById('results').classList.add('visible');
+                window.scrollTo({ top: document.getElementById('results').offsetTop - 20, behavior: 'smooth' });
+
+            } catch (err) {
+                console.warn('API unavailable, falling back to local ELO model:', err.message);
+
+                /* ── Local ELO fallback (when API is unreachable) ── */
+                const h = TEAMS[homeTeam], a = TEAMS[awayTeam];
+                const vm = VENUE_META[venue] || { alt: 100, temp: 22, city: venue };
+                const eloDiff = h.elo - a.elo;
+                const eloFactor = 1 / (1 + Math.pow(10, -eloDiff / 400));
+                const altStress = Math.max(0, (vm.alt - 500) / 4000);
+                let lamH = Math.max(0.3, Math.min(3.5, 1.32 * eloFactor / (1 - eloFactor + 1e-6) * 0.7 + 0.55));
+                let lamA = Math.max(0.3, Math.min(3.5, 1.32 * (1 - eloFactor) / (eloFactor + 1e-6) * 0.7 + 0.45));
+                const matrix = buildScoreMatrix(lamH, lamA);
+                let pHome = 0, pDraw = 0, pAway = 0;
+                for (let i = 0; i < 7; i++) for (let j = 0; j < 7; j++) {
+                    if (i > j) pHome += matrix[i][j]; else if (i === j) pDraw += matrix[i][j]; else pAway += matrix[i][j];
+                }
+                const tot = pHome + pDraw + pAway; pHome /= tot; pDraw /= tot; pAway /= tot;
+                const jitter = () => (Math.random() - 0.5) * 0.04;
+                const poiss = { home: pHome, draw: pDraw, away: pAway };
+                const xgb = normalise({ home: pHome + jitter(), draw: pDraw + jitter(), away: pAway + jitter() });
+                const nn = normalise({ home: pHome + jitter(), draw: pDraw + jitter(), away: pAway + jitter() });
+                const ens = normalise({ home: .3 * poiss.home + .45 * xgb.home + .25 * nn.home, draw: .3 * poiss.draw + .45 * xgb.draw + .25 * nn.draw, away: .3 * poiss.away + .45 * xgb.away + .25 * nn.away });
+                let bestI = 0, bestJ = 0, bestP = 0;
+                for (let i = 0; i < 7; i++) for (let j = 0; j < 7; j++) if (matrix[i][j] > bestP) { bestP = matrix[i][j]; bestI = i; bestJ = j; }
+                const winsH = simulateTournamentWin(h.elo, h.wc) * 100, winsA = simulateTournamentWin(a.elo, a.wc) * 100;
+                const p = {
+                    ensemble: ens, poissonProbs: poiss, xgbProbs: xgb, nnProbs: nn,
+                    scoreH: bestI, scoreA: bestJ, lamH, lamA, matrix, eloDiff, altStress,
+                    venue: vm, venueStr: venue, winsH, winsA, finalH: winsH * 1.7, sfH: winsH * 2.5,
+                    finalA: winsA * 1.7, sfA: winsA * 2.5,
+                    factors: buildFactors(h, a, eloDiff, vm, altStress, homeTeam, awayTeam),
+                    _source: 'local',
+                };
+                renderResults(p, homeTeam, awayTeam, venue, stage);
+                document.getElementById('results').classList.add('visible');
+                window.scrollTo({ top: document.getElementById('results').offsetTop - 20, behavior: 'smooth' });
+            } finally {
+                document.getElementById('spinner').classList.remove('active');
+                document.getElementById('predict-btn').classList.remove('loading');
+            }
+        }
+
+        function renderResults(p, homeTeam, awayTeam, venue, stage) {
+            const h = TEAMS[homeTeam], a = TEAMS[awayTeam];
+
+            /* Scoreboard */
+            document.getElementById('sb-home-flag').textContent = h.flag;
+            document.getElementById('sb-away-flag').textContent = a.flag;
+            document.getElementById('sb-home-name').textContent = homeTeam.toUpperCase();
+            document.getElementById('sb-away-name').textContent = awayTeam.toUpperCase();
+            document.getElementById('sb-home-conf').textContent = h.conf;
+            document.getElementById('sb-away-conf').textContent = a.conf;
+            document.getElementById('sb-score-h').textContent = p.scoreH;
+            document.getElementById('sb-score-a').textContent = p.scoreA;
+            document.getElementById('xg-home-chip').textContent = `xG ${p.lamH.toFixed(2)}`;
+            document.getElementById('xg-away-chip').textContent = `xG ${p.lamA.toFixed(2)}`;
+            document.getElementById('stage-label-badge').textContent =
+                document.getElementById('stage-select').selectedOptions[0].text;
+
+            /* Probabilities */
+            const ens = p.ensemble;
+            const cards = [
+                { id: 'away', val: ens.away, label: awayTeam + ' Win' },
+                { id: 'draw', val: ens.draw, label: 'Draw' },
+                { id: 'home', val: ens.home, label: homeTeam + ' Win' },
+            ];
+            const maxVal = Math.max(ens.away, ens.draw, ens.home);
+
+            cards.forEach(c => {
+                const pct = Math.round(c.val * 100);
+                document.getElementById(`prob-${c.id}-num`).textContent = pct;
+                document.getElementById(`prob-${c.id}-label`) &&
+                    (document.getElementById(`prob-${c.id}-label`).textContent = c.label);
+                const card = document.getElementById(`prob-${c.id}-card`);
+                card.classList.toggle('winner', c.val === maxVal);
+                setTimeout(() => {
+                    document.getElementById(`bar-${c.id}`).style.width = (pct) + '%';
+                }, 100);
+            });
+
+            /* Model breakdown */
+            document.getElementById('m-poisson-home').textContent = (p.poissonProbs.home * 100).toFixed(1) + '%';
+            document.getElementById('m-poisson-draw').textContent = (p.poissonProbs.draw * 100).toFixed(1) + '%';
+            document.getElementById('m-poisson-away').textContent = (p.poissonProbs.away * 100).toFixed(1) + '%';
+            document.getElementById('m-xgb-home').textContent = (p.xgbProbs.home * 100).toFixed(1) + '%';
+            document.getElementById('m-xgb-draw').textContent = (p.xgbProbs.draw * 100).toFixed(1) + '%';
+            document.getElementById('m-xgb-away').textContent = (p.xgbProbs.away * 100).toFixed(1) + '%';
+            document.getElementById('m-nn-home').textContent = (p.nnProbs.home * 100).toFixed(1) + '%';
+            document.getElementById('m-nn-draw').textContent = (p.nnProbs.draw * 100).toFixed(1) + '%';
+            document.getElementById('m-nn-away').textContent = (p.nnProbs.away * 100).toFixed(1) + '%';
+
+            /* Metrics */
+            document.getElementById('m-venue').textContent = venue.replace(' Stadium', '').replace(' Field', '');
+            document.getElementById('m-altitude').textContent = `Altitude: ${p.venue.alt.toLocaleString()} m`;
+            document.getElementById('m-temp').textContent = `${p.venue.temp}°C`;
+            document.getElementById('m-conditions').textContent =
+                p.venue.alt > 1500 ? 'High altitude — fatigue risk' :
+                    p.venue.temp > 28 ? 'High heat — stamina impact' :
+                        p.venue.temp < 15 ? 'Cool conditions — fast play' : 'Moderate conditions';
+            const travelAdv = Math.abs(p.eloDiff * 0.3).toFixed(0);
+            document.getElementById('m-travel').textContent = travelAdv + 'km';
+            document.getElementById('m-elo').textContent = (p.eloDiff > 0 ? '+' : '') + p.eloDiff.toFixed(0);
+            document.getElementById('m-elo-sub').textContent =
+                p.eloDiff > 0 ? `${homeTeam} advantage` : `${awayTeam} advantage`;
+
+            /* Arc charts */
+            const circumference = 2 * Math.PI * 44; // r=44
+            function setArc(circleId, pctLabelId, wordId, pct, teamName) {
+                const c = document.getElementById(circleId);
+                const fill = Math.min(pct / 100, 1) * circumference;
+                c.setAttribute('stroke-dasharray', `${fill} ${circumference - fill}`);
+                document.getElementById(pctLabelId).textContent = pct.toFixed(1) + '%';
+                document.getElementById(wordId).textContent = teamName.split(' ')[0].toUpperCase();
+            }
+            setTimeout(() => {
+                setArc('arc-home-circle', 'arc-home-pct', 'arc-home-word', p.winsH, homeTeam);
+                setArc('arc-away-circle', 'arc-away-pct', 'arc-away-word', p.winsA, awayTeam);
+            }, 200);
+
+            document.getElementById('al-win-h').textContent = p.winsH.toFixed(1) + '%';
+            document.getElementById('al-fin-h').textContent = Math.min(p.finalH, 99).toFixed(1) + '%';
+            document.getElementById('al-sf-h').textContent = Math.min(p.sfH, 99).toFixed(1) + '%';
+            document.getElementById('al-win-a').textContent = p.winsA.toFixed(1) + '%';
+            document.getElementById('al-fin-a').textContent = Math.min(p.finalA, 99).toFixed(1) + '%';
+            document.getElementById('al-sf-a').textContent = Math.min(p.sfA, 99).toFixed(1) + '%';
+
+            /* Key factors */
+            const fl = document.getElementById('factors-list');
+            fl.innerHTML = p.factors.map(f => `
+    <div class="factor-row">
+      <div class="factor-icon">${f.icon}</div>
+      <div class="factor-info">
+        <div class="factor-name">${f.name}</div>
+        <div class="factor-detail">${f.detail}</div>
+      </div>
+      <div class="factor-bar-wrap">
+        <div class="factor-bar-track">
+          <div class="factor-bar-fill ${f.dir}" style="width:0%" data-pct="${f.pct * 100}"></div>
+        </div>
+        <div class="factor-val">${f.val}</div>
+      </div>
+    </div>
+  `).join('');
+            setTimeout(() => {
+                fl.querySelectorAll('.factor-bar-fill').forEach(el => {
+                    el.style.width = el.dataset.pct + '%';
+                });
+            }, 150);
+
+            /* Heatmap */
+            renderHeatmap(p.matrix, homeTeam, awayTeam);
+        }
+
+        function renderHeatmap(matrix, homeTeam, awayTeam) {
+            const MAX = matrix.length;
+
+            /* Col labels (away goals) */
+            const colLabels = document.getElementById('heatmap-col-labels');
+            colLabels.innerHTML = '<div style="width:36px"></div>' +
+                Array.from({ length: MAX }, (_, j) => `<div class="heatmap-col-label">${j}</div>`).join('');
+
+            /* Find max prob for normalisation */
+            const allVals = matrix.flat();
+            const maxP = Math.max(...allVals);
+
+            const rows = document.getElementById('heatmap-rows');
+            rows.innerHTML = '';
+            for (let i = 0; i < MAX; i++) {
+                const row = document.createElement('div');
+                row.className = 'heatmap-row';
+                row.innerHTML = `<div class="heatmap-row-label">${i}</div>`;
+                for (let j = 0; j < MAX; j++) {
+                    const val = matrix[i][j];
+                    const norm = val / maxP;
+                    const r = i > j ? Math.round(0 + norm * 0) : Math.round(norm * 255 * 0.1);
+                    const g = i > j ? Math.round(norm * 230) : Math.round(norm * 230 * 0.3);
+                    const b = i > j ? Math.round(norm * 120 * 0.5) : Math.round(68 + norm * 180);
+                    const alpha = 0.08 + norm * 0.88;
+                    const textColor = norm > 0.4 ? '#0a0e1a' : 'var(--txt3)';
+                    const pct = (val * 100).toFixed(1);
+                    const cell = document.createElement('div');
+                    cell.className = 'heatmap-cell';
+                    cell.style.background = `rgba(${r},${g},${b},${alpha})`;
+                    cell.style.color = textColor;
+                    if (norm > 0.1) cell.textContent = pct;
+                    cell.innerHTML += `<div class="cell-tooltip">${homeTeam} ${i}–${j} ${awayTeam}: ${pct}%</div>`;
+                    row.appendChild(cell);
+                }
+                rows.appendChild(row);
+            }
+
+            document.getElementById('heatmap-home-label').textContent =
+                `${homeTeam.split(' ')[0].toUpperCase()} GOALS ↓`;
+            document.getElementById('heatmap-away-label').textContent =
+                `${awayTeam.split(' ')[0].toUpperCase()} GOALS →`;
+        }
+
+        /* ── Auto-run on load ──────────────────────────────────────────────── */
+        window.addEventListener('load', () => {
+            setTimeout(() => runPrediction(), 300);
+        });
+    </script>
+</body>
+
+</html>
